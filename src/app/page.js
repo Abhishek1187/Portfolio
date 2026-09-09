@@ -11,6 +11,8 @@ import GamerCorner from "@/components/sections/GamerCorner";
 import CareerTimeline from "@/components/sections/CareerTimeline";
 import RadioContact from "@/components/sections/RadioContact";
 import Modal from "@/components/ui/Modal";
+import DynamicScrollBackground from "@/components/ui/DynamicScrollBackground";
+import CyberParticles from "@/components/ui/CyberParticles";
 import { sound } from "@/lib/sound";
 
 export default function Home() {
@@ -26,7 +28,13 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-[#f4f4ed] flex flex-col selection:bg-[#d2ff00] selection:text-black">
+    <div className="relative min-h-screen text-[#f4f4ed] flex flex-col selection:bg-[#d2ff00] selection:text-black overflow-x-hidden">
+      {/* 1. Full-Page Dynamic Scroll Gradient & Topographic Contour Texture */}
+      <DynamicScrollBackground />
+
+      {/* 2. Ambient Cyber Particles */}
+      <CyberParticles />
+
       {/* Top Floating HUD Navbar */}
       <Navbar
         isMuted={isMuted}
@@ -34,7 +42,7 @@ export default function Home() {
       />
 
       {/* Main Portfolio Sections */}
-      <main className="flex-1">
+      <main className="relative z-10 flex-1">
         {/* Hero Section */}
         <Hero />
 

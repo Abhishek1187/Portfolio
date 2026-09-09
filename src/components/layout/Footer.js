@@ -30,7 +30,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-black border-t border-[#22252c] pt-12 pb-8 overflow-hidden">
+    <footer className="relative bg-transparent border-t border-[#22252c]/60 pt-12 pb-8 overflow-hidden">
       {/* Telemetry live marquee ticker */}
       <div className="w-full bg-[#0a0b0e] border-y border-[#22252c] py-2.5 mb-12 overflow-hidden select-none">
         <div className="animate-ticker flex items-center gap-8">

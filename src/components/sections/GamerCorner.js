@@ -21,7 +21,7 @@ export default function GamerCorner() {
   };
 
   return (
-    <section id="gaming" className="py-20 px-4 sm:px-6 lg:px-8 bg-carbon relative">
+    <section id="gaming" className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent relative">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           sector="05"

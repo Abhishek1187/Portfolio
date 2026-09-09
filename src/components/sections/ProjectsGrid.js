@@ -18,7 +18,7 @@ export default function ProjectsGrid({ onSelectProject }) {
     : projectsData.filter((p) => p.category === filter);
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-carbon relative">
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent relative">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           sector="03"

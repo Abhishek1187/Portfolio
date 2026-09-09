@@ -7,7 +7,7 @@ import { profileData } from "@/data/profile";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 bg-carbon overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8 bg-transparent overflow-hidden">
       {/* Subtle Dynamic Background Glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-[#d2ff00]/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 right-10 w-[350px] h-[350px] bg-[#00f0ff]/10 rounded-full blur-[120px] pointer-events-none" />
@@ -35,7 +35,7 @@ export default function Hero() {
                 <span>{profileData.title}</span>
               </span>
 
-              <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter text-[#f4f4ed] uppercase leading-[0.95]">
+              <h1 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter uppercase leading-[0.95] text-[var(--color-text-primary)]">
                 {profileData.name.split(" ")[0]} <br />
                 <span className="text-[#d2ff00] text-glow-volt">
                   {profileData.name.split(" ")[1] || "DEV"}
@@ -43,7 +43,7 @@ export default function Hero() {
               </h1>
             </div>
 
-            <p className="text-base sm:text-lg text-[#a1a1aa] max-w-xl font-normal leading-relaxed">
+            <p className="text-base sm:text-lg text-[var(--color-text-secondary)] max-w-xl font-normal leading-relaxed">
               {profileData.bio.lead}
             </p>
 
@@ -52,9 +52,9 @@ export default function Hero() {
               {profileData.stats.map((stat, idx) => (
                 <div
                   key={idx}
-                  className="bg-[#14161b]/80 border border-[#22252c] rounded-[8.77px] p-3 text-center sm:text-left"
+                  className="bg-[var(--color-surface-card)]/80 border border-[var(--color-border-card)] rounded-[8.77px] p-3 text-center sm:text-left shadow-sm"
                 >
-                  <span className="block text-[10.67px] font-mono text-[#a1a1aa] uppercase truncate">
+                  <span className="block text-[10.67px] font-mono text-[var(--color-text-secondary)] uppercase truncate">
                     {stat.label}
                   </span>
                   <span className="text-xl sm:text-2xl font-black text-[#d2ff00] font-mono">
@@ -91,7 +91,7 @@ export default function Hero() {
           <div className="lg:col-span-5">
             <Card glow="volt" className="border-volt-subtle p-6 space-y-6">
               {/* Card Header */}
-              <div className="flex items-center justify-between border-b border-[#22252c] pb-3">
+              <div className="flex items-center justify-between border-b border-[var(--color-border-card)] pb-3">
                 <div className="flex items-center gap-2 font-mono text-xs text-[#d2ff00] font-bold tracking-wider">
                   <span className="w-2 h-2 rounded-full bg-[#d2ff00] animate-ping" />
                   DEV ENVIRONMENT // ACTIVE
@@ -102,14 +102,14 @@ export default function Hero() {
               </div>
 
               {/* Graphic Code Terminal Preview */}
-              <div className="bg-[#14161b] rounded-[8.77px] border border-[#22252c] p-5 font-mono text-xs space-y-2">
-                <div className="flex items-center gap-1.5 pb-2 border-b border-[#22252c]/60">
+              <div className="bg-[var(--color-surface-subtle)] rounded-[8.77px] border border-[var(--color-border-card)] p-5 font-mono text-xs space-y-2">
+                <div className="flex items-center gap-1.5 pb-2 border-b border-[var(--color-border-card)]/60">
                   <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
                   <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
                   <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                  <span className="text-[10.67px] text-[#71717a] ml-2">terminal ~ developer-profile</span>
+                  <span className="text-[10.67px] text-[var(--color-text-tertiary)] ml-2">terminal ~ developer-profile</span>
                 </div>
-                <div className="pt-2 text-[#a1a1aa] space-y-1">
+                <div className="pt-2 text-[var(--color-text-secondary)] space-y-1">
                   <p><span className="text-[#d2ff00] font-bold">const</span> developer = &#123;</p>
                   <p className="pl-4">name: <span className="text-[#00f0ff]">"{profileData.name}"</span>,</p>
                   <p className="pl-4">focus: <span className="text-[#00f0ff]">"Full-Stack Web Apps"</span>,</p>
@@ -121,12 +121,12 @@ export default function Hero() {
 
               {/* Status metrics */}
               <div className="space-y-2.5 font-mono text-xs">
-                <div className="flex items-center justify-between p-2.5 rounded-[6.4px] bg-[#14161b]/60 border border-[#22252c]">
-                  <span className="text-[#a1a1aa]">CODE QUALITY:</span>
+                <div className="flex items-center justify-between p-2.5 rounded-[6.4px] bg-[var(--color-surface-subtle)]/60 border border-[var(--color-border-card)]">
+                  <span className="text-[var(--color-text-secondary)]">CODE QUALITY:</span>
                   <span className="text-[#d2ff00] font-bold">100% WCAG 2.2 AA</span>
                 </div>
-                <div className="flex items-center justify-between p-2.5 rounded-[6.4px] bg-[#14161b]/60 border border-[#22252c]">
-                  <span className="text-[#a1a1aa]">SYSTEM LATENCY:</span>
+                <div className="flex items-center justify-between p-2.5 rounded-[6.4px] bg-[var(--color-surface-subtle)]/60 border border-[var(--color-border-card)]">
+                  <span className="text-[var(--color-text-secondary)]">SYSTEM LATENCY:</span>
                   <span className="text-[#00f0ff] font-bold">&lt; 20ms ULTRA FAST</span>
                 </div>
               </div>

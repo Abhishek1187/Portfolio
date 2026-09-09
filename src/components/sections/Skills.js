@@ -13,7 +13,7 @@ export default function Skills() {
   const [viewMode, setViewMode] = useState("grid"); // "grid" or "breakdown"
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-black relative">
+    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent relative">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-4">
           <SectionHeader

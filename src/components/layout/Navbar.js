@@ -41,11 +41,10 @@ export default function Navbar({ isMuted, onToggleMute }) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled
           ? "bg-black/85 backdrop-blur-md border-b border-[#22252c] py-3 shadow-[0_4px_30px_rgba(0,0,0,0.8)]"
           : "bg-transparent py-5"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}

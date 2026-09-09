@@ -7,7 +7,7 @@ import { timelineData } from "@/data/timeline";
 
 export default function CareerTimeline() {
   return (
-    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-black relative">
+    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent relative">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           sector="06"
