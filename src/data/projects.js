@@ -1,0 +1,48 @@
+export const projectsData = [
+  {
+    id: "real-time-chat-app",
+    title: "Real-Time Chat Application",
+    category: "Full-Stack Web App",
+    tagline: "Instant messaging and secure media sharing platform with real-time sync.",
+    description: "Built a full-stack real-time chat platform supporting instant messaging and media sharing. Implemented Firebase Authentication for secure login, session handling, and protected user access. Integrated Firestore for low-latency real-time message synchronization across clients and Supabase Storage for secure media uploads. Deployed with CI/CD automation via GitHub Actions.",
+    stats: {
+      sync: "Low-Latency Firestore",
+      storage: "Supabase Media",
+      deployment: "Firebase Hosting + CI/CD",
+    },
+    tags: ["React.js", "Firebase", "Firestore", "Supabase", "GitHub Actions", "Tailwind CSS"],
+    accentColor: "#d2ff00",
+    featured: true,
+    link: "#",
+    github: "https://github.com",
+    highlights: [
+      "Full-stack real-time chat platform supporting instant messaging and media sharing",
+      "Firebase Authentication for secure login, session handling, and protected access",
+      "Firestore low-latency real-time message synchronization across clients",
+      "Supabase Storage integration for secure media uploads and Firebase CI/CD deployment",
+    ],
+  },
+  {
+    id: "scalable-chat-backend",
+    title: "Scalable Real-Time Chat Backend",
+    category: "Backend & Systems",
+    tagline: "Scalable Node.js & Socket.io messaging architecture with JWT auth and rate limiting.",
+    description: "Developed a scalable real-time messaging platform backend using Node.js, Express.js, MongoDB, and Socket.io for instant communication. Implemented custom JWT authentication, secure password hashing, and role-based authorization. Designed 12+ RESTful APIs handling auth, messaging, and media supporting 50+ concurrent socket connections. Integrated Cloudinary for media, Resend for emails, and Arcjet for API rate limiting.",
+    stats: {
+      concurrency: "50+ Socket Connections",
+      endpoints: "12+ RESTful APIs",
+      security: "Arcjet Rate Limiting + JWT",
+    },
+    tags: ["Node.js", "Express.js", "MongoDB", "Socket.io", "JWT", "Cloudinary", "Arcjet"],
+    accentColor: "#00f0ff",
+    featured: true,
+    link: "#",
+    github: "https://github.com",
+    highlights: [
+      "Real-time WebSocket communication layer using Socket.io with persistent MongoDB storage",
+      "Custom JWT authentication with bcrypt password hashing and role-based access control",
+      "Designed 12+ REST APIs handling authentication, messaging channels, and media pipelines",
+      "Integrated Cloudinary for media uploads, Resend for email delivery, and Arcjet for security",
+    ],
+  },
+];
