@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Button from "../ui/Button";
 import Badge from "../ui/Badge";
 import Card from "../ui/Card";
@@ -89,7 +90,7 @@ export default function Hero() {
 
           {/* Right Column: High-Tech Developer Terminal Card */}
           <div className="lg:col-span-5">
-            <Card glow="volt" className="border-volt-subtle p-6 space-y-6">
+            <Card glow="volt" className="border-volt-subtle p-5 sm:p-6 space-y-4 sm:space-y-5">
               {/* Card Header */}
               <div className="flex items-center justify-between border-b border-[var(--color-border-card)] pb-3">
                 <div className="flex items-center gap-2 font-mono text-xs text-[#d2ff00] font-bold tracking-wider">
@@ -101,31 +102,36 @@ export default function Hero() {
                 </Badge>
               </div>
 
-              {/* Graphic Code Terminal Preview */}
-              <div className="bg-[var(--color-surface-subtle)] rounded-[8.77px] border border-[var(--color-border-card)] p-5 font-mono text-xs space-y-2">
-                <div className="flex items-center gap-1.5 pb-2 border-b border-[var(--color-border-card)]/60">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-500/80" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-green-500/80" />
-                  <span className="text-[10.67px] text-[var(--color-text-tertiary)] ml-2">terminal ~ developer-profile</span>
-                </div>
-                <div className="pt-2 text-[var(--color-text-secondary)] space-y-1">
-                  <p><span className="text-[#d2ff00] font-bold">const</span> developer = &#123;</p>
-                  <p className="pl-4">name: <span className="text-[#00f0ff]">"{profileData.name}"</span>,</p>
-                  <p className="pl-4">focus: <span className="text-[#00f0ff]">"Full-Stack Web Apps"</span>,</p>
-                  <p className="pl-4">coreStack: <span className="text-[#a855f7]">"React / Node.js"</span>,</p>
-                  <p className="pl-4">status: <span className="text-[#d2ff00]">"Ready for Work"</span></p>
-                  <p>&#125;;</p>
+              {/* Operator / Avatar Visual Frame */}
+              <div className="relative w-full h-52 sm:h-60 rounded-[8.77px] overflow-hidden border border-[var(--color-border-card)] group bg-[var(--color-surface-subtle)] shadow-inner">
+                <Image
+                  src="/toji.png"
+                  alt="Abhishek Kumar"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 420px"
+                  className="object-cover object-top filter brightness-[0.95] contrast-[1.05] transition-transform duration-700 group-hover:scale-105 group-hover:brightness-100"
+                  priority
+                />
+                {/* Vignette gradients */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-surface-card)] via-transparent to-transparent opacity-85" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent opacity-60" />
+
+                {/* HUD Corner Accents */}
+
+                <div className="absolute bottom-2.5 right-2.5 font-mono text-[9px] tracking-widest text-[var(--color-text-secondary)] bg-black/75 backdrop-blur-md px-2 py-0.5 rounded-[4px] border border-white/10">
+                  SYS: ONLINE
                 </div>
               </div>
 
+
+
               {/* Status metrics */}
-              <div className="space-y-2.5 font-mono text-xs">
-                <div className="flex items-center justify-between p-2.5 rounded-[6.4px] bg-[var(--color-surface-subtle)]/60 border border-[var(--color-border-card)]">
+              <div className="space-y-2 font-mono text-xs">
+                <div className="flex items-center justify-between p-2 rounded-[6.4px] bg-[var(--color-surface-subtle)]/60 border border-[var(--color-border-card)]">
                   <span className="text-[var(--color-text-secondary)]">CODE QUALITY:</span>
                   <span className="text-[#d2ff00] font-bold">100% WCAG 2.2 AA</span>
                 </div>
-                <div className="flex items-center justify-between p-2.5 rounded-[6.4px] bg-[var(--color-surface-subtle)]/60 border border-[var(--color-border-card)]">
+                <div className="flex items-center justify-between p-2 rounded-[6.4px] bg-[var(--color-surface-subtle)]/60 border border-[var(--color-border-card)]">
                   <span className="text-[var(--color-text-secondary)]">SYSTEM LATENCY:</span>
                   <span className="text-[#00f0ff] font-bold">&lt; 20ms ULTRA FAST</span>
                 </div>
