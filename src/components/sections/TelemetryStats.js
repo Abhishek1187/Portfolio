@@ -52,7 +52,7 @@ export default function TelemetryStats({ activeMode }) {
           <Card className="p-6 space-y-5">
             <h3 className="font-mono text-xs uppercase font-bold text-[#d2ff00] tracking-wider flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#d2ff00]" />
-              // MOTORSPORT PRECISION GAUGES
+              MOTORSPORT PRECISION GAUGES
             </h3>
             <TelemetryMeter label="Qualifying Single-Lap Attack" value={98} max={100} color="#d2ff00" secondaryLabel="Sector 1-3 Delta" />
             <TelemetryMeter label="Race Craft & Tire Management" value={96} max={100} color="#ff8000" secondaryLabel="Degradation Index" />
@@ -62,7 +62,7 @@ export default function TelemetryStats({ activeMode }) {
           <Card className="p-6 space-y-5">
             <h3 className="font-mono text-xs uppercase font-bold text-[#d2ff00] tracking-wider flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#d2ff00]" />
-              // SIMULATION & CONTENT ENGINE
+              SIMULATION & CONTENT ENGINE
             </h3>
             <TelemetryMeter label="iRacing Pro License Index" value={99} max={100} color="#d2ff00" secondaryLabel="iRating: 8.2K+" />
             <TelemetryMeter label="Hardware Optimization & Telemetry Rig" value={97} max={100} color="#a855f7" secondaryLabel="Direct Drive Latency" />

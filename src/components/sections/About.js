@@ -27,7 +27,7 @@ export default function About() {
                   <Badge variant="volt" size="sm" dot>
                     BACKGROUND & VISION
                   </Badge>
-                  <span className="font-mono text-xs text-[#a1a1aa]">PROFILE // BIO</span>
+                  <span className="font-mono text-xs text-[#a1a1aa]">PROFILE • BIO</span>
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-[#f4f4ed] uppercase">
@@ -59,7 +59,7 @@ export default function About() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between border-b border-[#22252c] pb-3">
                   <span className="font-mono text-xs uppercase font-bold text-[#d2ff00]">
-                    // QUICK SPEC SHEET
+                    QUICK SPEC SHEET
                   </span>
                   <span className="font-mono text-xs text-[#a1a1aa]">DEV PROFILE</span>
                 </div>
@@ -75,7 +75,7 @@ export default function About() {
                   </div>
                   <div className="flex justify-between py-1.5 border-b border-[#22252c]/60">
                     <span className="text-[#a1a1aa]">EDUCATION:</span>
-                    <span className="text-[#00f0ff] font-bold">B.Tech CSE (Expected 2026)</span>
+                    <span className="text-[#00f0ff] font-bold">B.Tech CSE (2022-2026)</span>
                   </div>
                   <div className="flex justify-between py-1.5 border-b border-[#22252c]/60">
                     <span className="text-[#a1a1aa]">PROBLEM SOLVING:</span>
@@ -83,7 +83,7 @@ export default function About() {
                   </div>
                   <div className="flex justify-between py-1.5 border-b border-[#22252c]/60">
                     <span className="text-[#a1a1aa]">AVAILABILITY:</span>
-                    <span className="text-[#d2ff00] font-bold">Open to Opportunities</span>
+                    <span className="text-[#d2ff00] font-bold">Open to Full-Time Roles</span>
                   </div>
                 </div>
               </div>

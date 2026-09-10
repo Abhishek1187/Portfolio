@@ -3,7 +3,7 @@ export const gearData = {
     {
       category: "Sim Wheel Base",
       name: "Simucube 2 Ultimate Direct Drive",
-      spec: "32Nm Peak Torque // Sub-millisecond wireless telemetry",
+      spec: "32Nm Peak Torque • Sub-millisecond wireless telemetry",
       status: "Calibrated 100%",
     },
     {
@@ -21,7 +21,7 @@ export const gearData = {
     {
       category: "Display Array",
       name: "Triple 32\" Samsung Odyssey G7 240Hz 1000R",
-      spec: "Panoramic 180° FOV // 0.03ms Grey-to-Grey response",
+      spec: "Panoramic 180° FOV • 0.03ms Grey-to-Grey response",
       status: "Surround Locked",
     },
   ],
@@ -29,7 +29,7 @@ export const gearData = {
     {
       category: "Stream & Sim Rig Rig",
       name: "Custom Liquid-Cooled Gaming Battle Station",
-      spec: "Intel Core i9-14900KS // Dual NVIDIA RTX 4090 24GB // 64GB DDR5 7200MHz",
+      spec: "Intel Core i9-14900KS • Dual NVIDIA RTX 4090 24GB • 64GB DDR5 7200MHz",
       status: "Overclocked",
     },
     {

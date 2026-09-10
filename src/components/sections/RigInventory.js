@@ -98,7 +98,7 @@ export default function RigInventory() {
         <Card className="p-6 sm:p-8">
           <div className="mb-6">
             <h3 className="font-mono text-xs uppercase font-bold text-[#d2ff00] tracking-wider mb-2">
-              // TELEMETRY & STRATEGY PROFICIENCY
+              TELEMETRY & STRATEGY PROFICIENCY
             </h3>
             <p className="text-xs sm:text-sm text-[#a1a1aa]">
               Engineering capabilities spanning real-world ATLAS telemetry analysis, dynamic sim racing setups, and digital media architecture.
@@ -113,7 +113,7 @@ export default function RigInventory() {
                 value={skill.level}
                 max={100}
                 color={idx % 2 === 0 ? "#d2ff00" : "#ff8000"}
-                secondaryLabel={`SPEC // ${skill.category}`}
+                secondaryLabel={`SPEC • ${skill.category}`}
               />
             ))}
           </div>

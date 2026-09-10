@@ -87,7 +87,7 @@ export default function Modal({ isOpen, onClose, project }) {
         {project.highlights && (
           <div className="mb-6 bg-[#14161b]/80 border border-[#22252c] rounded-[6.4px] p-4">
             <h4 className="text-xs font-mono uppercase text-[#d2ff00] font-bold mb-3 tracking-wider">
-              // KEY MISSION HIGHLIGHTS
+              KEY MISSION HIGHLIGHTS
             </h4>
             <ul className="space-y-2">
               {project.highlights.map((h, i) => (

@@ -34,7 +34,7 @@ export default function RadioContact() {
     setFormState({
       name: "",
       email: "",
-      subject: "Full-Time / Internship Role",
+      subject: "Full-Time Opportunity",
       message: "",
     });
     setIsSubmitted(false);
@@ -46,8 +46,8 @@ export default function RadioContact() {
         <SectionHeader
           sector="07"
           tag="GET IN TOUCH"
-          title="Contact & Opportunities"
-          subtitle="Have an internship or full-time opportunity, project discussion, or want to connect? Send a message below."
+          title="Contact Me"
+          subtitle="Full-time opportunity, project discussion, or want to connect? Send a message below."
           badgeVariant="volt"
         />
 
@@ -93,17 +93,17 @@ export default function RadioContact() {
                 <div>
                   <span className="text-[#a1a1aa] block mb-1 uppercase">Education:</span>
                   <span className="text-[#00f0ff] font-bold">
-                    B.Tech in Computer Science (Expected 2026)
+                    B.Tech in Computer Science (2022-2026)
                   </span>
                 </div>
               </div>
 
               <div className="p-4 rounded-[6.4px] bg-[#14161b] border border-[#22252c] space-y-2">
                 <span className="font-mono text-xs font-bold text-[#d2ff00] uppercase block">
-                  // QUICK RESPONSE
+                  QUICK RESPONSE
                 </span>
                 <p className="text-xs text-[#a1a1aa] leading-relaxed">
-                  I am actively seeking software engineering internships and junior full-stack opportunities. Feel free to reach out directly.
+                  I am actively seeking full-time Software Engineering and Full-Stack Developer opportunities. Feel free to reach out directly.
                 </p>
               </div>
             </Card>
@@ -122,7 +122,7 @@ export default function RadioContact() {
                       MESSAGE TRANSMITTED
                     </h3>
                     <p className="font-mono text-xs text-[#d2ff00]">
-                      PACKET DELIVERED TO INBOX // STATUS: SUCCESS
+                      MESSAGE DELIVERED TO INBOX • STATUS: SUCCESS
                     </p>
                   </div>
                   <p className="text-sm text-[#a1a1aa] max-w-md mx-auto">
@@ -136,7 +136,7 @@ export default function RadioContact() {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="flex items-center justify-between border-b border-[#22252c] pb-3 mb-2">
                     <span className="font-mono text-xs font-bold uppercase text-[#d2ff00]">
-                      // MESSAGE CONSOLE
+                      MESSAGE CONSOLE
                     </span>
                     <span className="font-mono text-[10.67px] text-[#a1a1aa]">ENCRYPTED TRANSMISSION</span>
                   </div>

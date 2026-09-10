@@ -3,7 +3,7 @@ export const gamingData = {
   riotId: "Phantom#NA1",
   steamId: "steamcommunity.com/id/yourhandle",
   discord: "phantom_vlr",
-  status: "ONLINE // GRINDING COMP",
+  status: "ONLINE • GRINDING COMP",
   
   valorant: {
     currentRank: "Ascendant 3",

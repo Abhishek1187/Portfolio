@@ -2,7 +2,7 @@ export const profileData = {
   name: "Abhishek Kumar",
   handle: "abhishekkumar.dev",
   title: "Software Developer",
-  status: "OPEN TO INTERNSHIPS & OPPORTUNITIES",
+  status: "OPEN TO FULL-TIME OPPORTUNITIES",
   location: "New Delhi, India",
   phone: "+91 7011168677",
   email: "abhishekkumar199671@gmail.com",
@@ -13,7 +13,7 @@ export const profileData = {
   stats: [
     { label: "DSA Problems Solved", value: "200+", unit: "LeetCode" },
     { label: "Graduation Year", value: "2026", unit: "B.Tech CSE" },
-    { label: "REST APIs Designed", value: "12+", unit: "Endpoints" },
+    { label: "Projects Built", value: "10+", unit: "Full-Stack" },
     { label: "Full-Stack Apps", value: "Real-Time", unit: "Deployed" },
   ],
   socials: [

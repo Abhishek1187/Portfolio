@@ -120,7 +120,7 @@ export default function GamerCorner() {
                 {/* Top Main Agents */}
                 <div>
                   <span className="text-xs font-mono uppercase text-[#a1a1aa] block mb-2 font-semibold">
-                    // MOST PLAYED AGENTS
+                    MOST PLAYED AGENTS
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                     {gamingData.valorant.topAgents.map((agent) => (
@@ -152,7 +152,7 @@ export default function GamerCorner() {
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#d2ff00]" />
                     <h3 className="font-mono text-xs uppercase font-bold text-[#d2ff00]">
-                      // BATTLESTATION SETUP
+                      BATTLESTATION SETUP
                     </h3>
                   </div>
                   <Badge variant="dark" size="xs">
@@ -188,7 +188,7 @@ export default function GamerCorner() {
         <div>
           <div className="flex items-center justify-between mb-6">
             <h3 className="font-mono text-xs uppercase font-bold text-[#d2ff00] tracking-wider flex items-center gap-2">
-              <span>//</span> RECENTLY PLAYED & FAVORITES
+              RECENTLY PLAYED & FAVORITES
             </h3>
             <span className="font-mono text-xs text-[#a1a1aa]">
               STEAM & RIOT LOGGED

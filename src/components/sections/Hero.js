@@ -95,15 +95,15 @@ export default function Hero() {
               <div className="flex items-center justify-between border-b border-[var(--color-border-card)] pb-3">
                 <div className="flex items-center gap-2 font-mono text-xs text-[#d2ff00] font-bold tracking-wider">
                   <span className="w-2 h-2 rounded-full bg-[#d2ff00] animate-ping" />
-                  DEV ENVIRONMENT // ACTIVE
+                  DEV ENVIRONMENT • ACTIVE
                 </div>
                 <Badge variant="dark" size="xs">
-                  NEXT.JS 16 // TAILWIND
+                  NEXT.JS 16 • TAILWIND
                 </Badge>
               </div>
 
               {/* Operator / Avatar Visual Frame */}
-              <div className="relative w-full h-52 sm:h-60 rounded-[8.77px] overflow-hidden border border-[var(--color-border-card)] group bg-[var(--color-surface-subtle)] shadow-inner">
+              <div className="relative w-full h-72 sm:h-80 md:h-96 rounded-[8.77px] overflow-hidden border border-[var(--color-border-card)] group bg-[var(--color-surface-subtle)] shadow-inner">
                 <Image
                   src="/toji.png"
                   alt="Abhishek Kumar"
@@ -117,23 +117,7 @@ export default function Hero() {
                 <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-transparent opacity-60" />
 
                 {/* HUD Corner Accents */}
-
                 <div className="absolute bottom-2.5 right-2.5 font-mono text-[9px] tracking-widest text-[var(--color-text-secondary)] bg-black/75 backdrop-blur-md px-2 py-0.5 rounded-[4px] border border-white/10">
-                  SYS: ONLINE
-                </div>
-              </div>
-
-
-
-              {/* Status metrics */}
-              <div className="space-y-2 font-mono text-xs">
-                <div className="flex items-center justify-between p-2 rounded-[6.4px] bg-[var(--color-surface-subtle)]/60 border border-[var(--color-border-card)]">
-                  <span className="text-[var(--color-text-secondary)]">CODE QUALITY:</span>
-                  <span className="text-[#d2ff00] font-bold">100% WCAG 2.2 AA</span>
-                </div>
-                <div className="flex items-center justify-between p-2 rounded-[6.4px] bg-[var(--color-surface-subtle)]/60 border border-[var(--color-border-card)]">
-                  <span className="text-[var(--color-text-secondary)]">SYSTEM LATENCY:</span>
-                  <span className="text-[#00f0ff] font-bold">&lt; 20ms ULTRA FAST</span>
                 </div>
               </div>
 

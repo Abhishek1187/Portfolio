@@ -102,7 +102,7 @@ export default function Skills() {
                 <div>
                   <div className="flex items-center justify-between border-b border-[#22252c] pb-3 mb-6">
                     <h3 className="font-mono text-xs uppercase font-bold text-[#f4f4ed] tracking-wider">
-                      // {category.name}
+                      {category.name}
                     </h3>
                     <Badge variant={idx === 0 ? "volt" : idx === 1 ? "cyan" : "violet"} size="xs">
                       STACK

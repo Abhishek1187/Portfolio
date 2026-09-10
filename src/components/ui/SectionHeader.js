@@ -13,7 +13,7 @@ export default function SectionHeader({
     <div className={cn("mb-10 sm:mb-14", className)}>
       <div className="flex items-center gap-3 mb-3">
         <Badge variant={badgeVariant} size="sm" dot>
-          SECTOR {sector} // {tag}
+          SECTOR {sector} • {tag}
         </Badge>
         <div className="h-px flex-1 bg-gradient-to-r from-[#22252c] to-transparent" />
       </div>

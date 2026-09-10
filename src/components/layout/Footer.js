@@ -71,7 +71,7 @@ export default function Footer() {
           {/* Quick Nav */}
           <div>
             <h4 className="font-mono text-xs uppercase font-bold text-[#d2ff00] mb-4 tracking-wider">
-              // NAVIGATION
+              NAVIGATION
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm font-mono text-[#a1a1aa]">
               <li>
@@ -125,7 +125,7 @@ export default function Footer() {
           {/* Social Channels */}
           <div>
             <h4 className="font-mono text-xs uppercase font-bold text-[#d2ff00] mb-4 tracking-wider">
-              // CONNECT
+              CONNECT
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm font-mono text-[#a1a1aa]">
               {profileData.socials.map((s, idx) => (
