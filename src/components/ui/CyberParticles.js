@@ -6,6 +6,9 @@ export default function CyberParticles() {
   const canvasRef = useRef(null);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -27,7 +30,7 @@ export default function CyberParticles() {
     const particleCount = Math.min(75, Math.floor(width / 20));
     const particles = [];
 
-    const colors = ["#d2ff00", "#00f0ff", "#d2ff00", "#a855f7"];
+    const colors = ["#6366f1", "#06b6d4", "#818cf8", "#38bdf8"];
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
@@ -82,8 +85,8 @@ export default function CyberParticles() {
         ctx.shadowBlur = 0;
       }
 
-      ctx.globalAlpha = 0.06;
-      ctx.strokeStyle = "#d2ff00";
+      ctx.globalAlpha = 0.05;
+      ctx.strokeStyle = "#6366f1";
       ctx.lineWidth = 0.6;
 
       for (let i = 0; i < particles.length; i++) {

@@ -17,7 +17,7 @@ export const skillsData = {
   categories: [
     {
       name: "Languages & Core CS",
-      accent: "#d2ff00",
+      accent: "#ff7a00",
       skills: [
         { name: "C++ & Data Structures", icon: "c++", level: 94, exp: "200+ Solved" },
         { name: "JavaScript (ES6+) & TypeScript", icon: "javascript", level: 95, exp: "Core Web" },
@@ -28,7 +28,7 @@ export const skillsData = {
     },
     {
       name: "Frameworks & Backend Architecture",
-      accent: "#00f0ff",
+      accent: "#38bdf8",
       skills: [
         { name: "React.js & Component Design", icon: "react", level: 95, exp: "Production" },
         { name: "Node.js & Express.js", icon: "node", level: 92, exp: "RESTful APIs" },
@@ -39,7 +39,7 @@ export const skillsData = {
     },
     {
       name: "Databases, Cloud & Dev Tools",
-      accent: "#a855f7",
+      accent: "#818cf8",
       skills: [
         { name: "MongoDB Persistent Storage", icon: "mongo", level: 90, exp: "Mongoose ODM" },
         { name: "Firebase (Auth, Firestore, Hosting)", icon: "firebase", level: 92, exp: "Serverless" },

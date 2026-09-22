@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import SectionHeader from "../ui/SectionHeader";
-import Card from "../ui/Card";
 import Badge from "../ui/Badge";
 import Button from "../ui/Button";
 import { sound } from "@/lib/sound";
@@ -12,7 +11,7 @@ export default function RadioContact() {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
-    subject: "Full-Time / Internship Role",
+    subject: "Full-Time Opportunity",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -26,7 +25,7 @@ export default function RadioContact() {
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
-    }, 1000);
+    }, 800);
   };
 
   const handleReset = () => {
@@ -41,92 +40,100 @@ export default function RadioContact() {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent relative">
+    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent relative">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
-          sector="07"
-          tag="GET IN TOUCH"
-          title="Contact Me"
-          subtitle="Full-time opportunity, project discussion, or want to connect? Send a message below."
-          badgeVariant="volt"
+          sector="06"
+          tag="06 // GET IN TOUCH"
+          title="Let's Build Something Exceptional"
+          subtitle="Actively exploring full-time Software Engineer and Full-Stack Developer opportunities. Let's discuss how I can create value on your team."
+          badgeVariant="indigo"
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Direct Contact Info */}
+          {/* Direct Channels & Details */}
           <div className="lg:col-span-5 space-y-6">
-            <Card glow="volt" className="p-6 sm:p-8 space-y-6">
-              <div className="flex items-center justify-between border-b border-[#22252c] pb-3">
-                <div className="flex items-center gap-2 font-mono text-xs text-[#d2ff00] font-bold">
-                  <span className="w-2 h-2 rounded-full bg-[#d2ff00] animate-ping" />
+            <div className="p-7 sm:p-8 rounded-2xl bg-[#0d111c]/80 backdrop-blur-xl border border-white/10 space-y-6 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                <div className="flex items-center gap-2.5 font-mono text-xs text-cyan-400 font-semibold">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
                   STATUS: {profileData.status}
                 </div>
-                <Badge variant="dark" size="xs">
-                  DIRECT INBOX
+                <Badge variant="cyan" size="xs">
+                  DIRECT CHANNELS
                 </Badge>
               </div>
 
               <div className="space-y-4 font-mono text-xs sm:text-sm">
                 <div>
-                  <span className="text-[#a1a1aa] block mb-1 uppercase">Direct Email:</span>
+                  <span className="text-slate-400 block mb-1 uppercase text-[11px] tracking-wider">
+                    Direct Email
+                  </span>
                   <a
                     href={`mailto:${profileData.email}`}
-                    className="text-[#f4f4ed] hover:text-[#d2ff00] transition-colors font-bold"
+                    className="text-white hover:text-indigo-400 transition-colors font-semibold tracking-wide"
                   >
                     {profileData.email}
                   </a>
                 </div>
                 <div>
-                  <span className="text-[#a1a1aa] block mb-1 uppercase">Phone:</span>
+                  <span className="text-slate-400 block mb-1 uppercase text-[11px] tracking-wider">
+                    Phone
+                  </span>
                   <a
                     href={`tel:${profileData.phone}`}
-                    className="text-[#f4f4ed] hover:text-[#d2ff00] transition-colors font-bold"
+                    className="text-white hover:text-indigo-400 transition-colors font-semibold tracking-wide"
                   >
                     {profileData.phone}
                   </a>
                 </div>
                 <div>
-                  <span className="text-[#a1a1aa] block mb-1 uppercase">Location:</span>
-                  <span className="text-[#f4f4ed] font-bold">
+                  <span className="text-slate-400 block mb-1 uppercase text-[11px] tracking-wider">
+                    Location
+                  </span>
+                  <span className="text-white font-semibold">
                     {profileData.location}
                   </span>
                 </div>
                 <div>
-                  <span className="text-[#a1a1aa] block mb-1 uppercase">Education:</span>
-                  <span className="text-[#00f0ff] font-bold">
-                    B.Tech in Computer Science (2022-2026)
+                  <span className="text-slate-400 block mb-1 uppercase text-[11px] tracking-wider">
+                    Education
+                  </span>
+                  <span className="text-indigo-300 font-semibold">
+                    B.Tech in Computer Science (2022–2026)
                   </span>
                 </div>
               </div>
 
-              <div className="p-4 rounded-[6.4px] bg-[#14161b] border border-[#22252c] space-y-2">
-                <span className="font-mono text-xs font-bold text-[#d2ff00] uppercase block">
-                  QUICK RESPONSE
+              <div className="p-4 rounded-xl bg-[#131827]/60 border border-white/5 space-y-1.5">
+                <span className="font-mono text-xs font-bold text-indigo-400 uppercase tracking-wider block">
+                  FAST RESPONSE PROMISE
                 </span>
-                <p className="text-xs text-[#a1a1aa] leading-relaxed">
-                  I am actively seeking full-time Software Engineering and Full-Stack Developer opportunities. Feel free to reach out directly.
+                <p className="text-xs text-slate-300/80 leading-relaxed">
+                  I monitor my inbox daily and typically reply within 24 hours. Open to immediate interviews and technical assessments.
                 </p>
               </div>
-            </Card>
+            </div>
           </div>
 
-          {/* Contact Form */}
+          {/* Contact Message Form */}
           <div className="lg:col-span-7">
-            <Card className="p-6 sm:p-8">
+            <div className="p-7 sm:p-8 rounded-2xl bg-[#0d111c]/80 backdrop-blur-xl border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
               {isSubmitted ? (
                 <div className="py-12 text-center space-y-5 animate-fadeIn">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-[#d2ff00]/15 border-2 border-[#d2ff00] flex items-center justify-center text-[#d2ff00] text-2xl font-black shadow-[0_0_25px_rgba(210,255,0,0.5)]">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-indigo-500/20 border-2 border-indigo-400 flex items-center justify-center text-indigo-300 text-2xl font-bold shadow-[0_0_25px_rgba(99,102,241,0.5)]">
                     ✓
                   </div>
-                  <div className="space-y-1">
-                    <h3 className="text-2xl font-black text-[#f4f4ed] uppercase">
-                      MESSAGE TRANSMITTED
+                  <div className="space-y-1.5">
+                    <h3 className="text-2xl font-bold text-white tracking-tight">
+                      Message Received
                     </h3>
-                    <p className="font-mono text-xs text-[#d2ff00]">
-                      MESSAGE DELIVERED TO INBOX • STATUS: SUCCESS
+                    <p className="font-mono text-xs text-cyan-400 tracking-wider">
+                      THANK YOU • I WILL REPLY SHORTLY
                     </p>
                   </div>
-                  <p className="text-sm text-[#a1a1aa] max-w-md mx-auto">
-                    Thank you for reaching out! I will review your message and reply as soon as possible.
+                  <p className="text-sm text-slate-300 max-w-md mx-auto leading-relaxed">
+                    Thank you for reaching out! I look forward to reviewing your message and connecting with you.
                   </p>
                   <Button variant="outline" size="sm" onClick={handleReset}>
                     Send Another Message
@@ -134,17 +141,19 @@ export default function RadioContact() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="flex items-center justify-between border-b border-[#22252c] pb-3 mb-2">
-                    <span className="font-mono text-xs font-bold uppercase text-[#d2ff00]">
-                      MESSAGE CONSOLE
+                  <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-2">
+                    <span className="font-mono text-xs font-semibold uppercase text-indigo-400 tracking-wider">
+                      Direct Communication
                     </span>
-                    <span className="font-mono text-[10.67px] text-[#a1a1aa]">ENCRYPTED TRANSMISSION</span>
+                    <span className="font-mono text-[11px] text-slate-400">
+                      Typical reply: &lt; 24h
+                    </span>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label htmlFor="name" className="block text-xs font-mono uppercase text-[#a1a1aa]">
-                        Your Name <span className="text-[#d2ff00]">*</span>
+                      <label htmlFor="name" className="block text-xs font-mono uppercase text-slate-400 tracking-wider">
+                        Your Name <span className="text-indigo-400">*</span>
                       </label>
                       <input
                         id="name"
@@ -153,13 +162,13 @@ export default function RadioContact() {
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                         placeholder="e.g. Hiring Lead / Recruiter"
-                        className="w-full bg-[#14161b] border border-[#22252c] rounded-[6.4px] px-4 py-2.5 text-sm text-[#f4f4ed] placeholder-[#71717a] focus:outline-none focus:border-[#d2ff00] focus:ring-1 focus:ring-[#d2ff00] font-mono"
+                        className="w-full bg-[#131827] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 font-sans transition-colors"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label htmlFor="email" className="block text-xs font-mono uppercase text-[#a1a1aa]">
-                        Email Address <span className="text-[#d2ff00]">*</span>
+                      <label htmlFor="email" className="block text-xs font-mono uppercase text-slate-400 tracking-wider">
+                        Email Address <span className="text-indigo-400">*</span>
                       </label>
                       <input
                         id="email"
@@ -167,33 +176,33 @@ export default function RadioContact() {
                         required
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                        placeholder="e.g. recruiter@company.com"
-                        className="w-full bg-[#14161b] border border-[#22252c] rounded-[6.4px] px-4 py-2.5 text-sm text-[#f4f4ed] placeholder-[#71717a] focus:outline-none focus:border-[#d2ff00] focus:ring-1 focus:ring-[#d2ff00] font-mono"
+                        placeholder="e.g. lead@company.com"
+                        className="w-full bg-[#131827] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 font-sans transition-colors"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="subject" className="block text-xs font-mono uppercase text-[#a1a1aa]">
+                    <label htmlFor="subject" className="block text-xs font-mono uppercase text-slate-400 tracking-wider">
                       Topic / Opportunity
                     </label>
                     <select
                       id="subject"
                       value={formState.subject}
                       onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                      className="w-full bg-[#14161b] border border-[#22252c] rounded-[6.4px] px-4 py-2.5 text-sm text-[#f4f4ed] focus:outline-none focus:border-[#d2ff00] focus:ring-1 focus:ring-[#d2ff00] font-mono"
+                      className="w-full bg-[#131827] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 font-sans transition-colors cursor-pointer"
                     >
-                      <option value="Full-Time / Internship Role">Full-Time / Internship Opportunity</option>
-                      <option value="Project Collaboration">Project Collaboration</option>
-                      <option value="Freelance Web Development">Freelance Full-Stack Development</option>
-                      <option value="Technical Inquiries">Technical & Open Source Discussion</option>
-                      <option value="General Discussion">General Discussion</option>
+                      <option value="Full-Time Opportunity">Full-Time Software Engineer Role</option>
+                      <option value="Frontend / Full-Stack Role">Frontend / Full-Stack Developer Opportunity</option>
+                      <option value="Project Collaboration">Project Collaboration & Contract</option>
+                      <option value="Technical Discussion">Technical & Open Source Discussion</option>
+                      <option value="General Inquiries">General Inquiries</option>
                     </select>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="message" className="block text-xs font-mono uppercase text-[#a1a1aa]">
-                      Message <span className="text-[#d2ff00]">*</span>
+                    <label htmlFor="message" className="block text-xs font-mono uppercase text-slate-400 tracking-wider">
+                      Message <span className="text-[#ff7a00]">*</span>
                     </label>
                     <textarea
                       id="message"
@@ -201,8 +210,8 @@ export default function RadioContact() {
                       required
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                      placeholder="Type your message or opportunity details..."
-                      className="w-full bg-[#14161b] border border-[#22252c] rounded-[6.4px] px-4 py-2.5 text-sm text-[#f4f4ed] placeholder-[#71717a] focus:outline-none focus:border-[#d2ff00] focus:ring-1 focus:ring-[#d2ff00] font-mono resize-none"
+                      placeholder="Share details about the role, technical challenge, or project..."
+                      className="w-full bg-[#131b2e] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#ff7a00] focus:ring-1 focus:ring-[#ff7a00] font-sans resize-none transition-colors"
                     />
                   </div>
 
@@ -211,18 +220,18 @@ export default function RadioContact() {
                     variant="primary"
                     size="lg"
                     disabled={isSubmitting}
-                    className="w-full"
+                    className="w-full bg-gradient-to-r from-[#ff7a00] to-[#ea580c] hover:from-[#ff9e2c] hover:to-[#ff7a00] text-black font-extrabold shadow-[0_0_25px_rgba(255,122,0,0.4)] border-none"
                     icon={
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                       </svg>
                     }
                   >
-                    {isSubmitting ? "Transmitting..." : "Send Message"}
+                    {isSubmitting ? "Sending Message..." : "Send Message"}
                   </Button>
                 </form>
               )}
-            </Card>
+            </div>
           </div>
         </div>
       </div>

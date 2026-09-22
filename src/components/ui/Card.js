@@ -11,27 +11,29 @@ export default function Card({
 }) {
   const glowStyles = {
     none: "",
-    volt: "hover:border-[#d2ff00]/60 hover:shadow-[0_0_25px_rgba(210,255,0,0.15)]",
-    papaya: "hover:border-[#ff8000]/60 hover:shadow-[0_0_25px_rgba(255,128,0,0.15)]",
-    cyan: "hover:border-[#00f0ff]/60 hover:shadow-[0_0_25px_rgba(0,240,255,0.15)]",
+    orange: "hover:border-[#ff7a00]/60 hover:shadow-[0_0_25px_rgba(255,122,0,0.25)]",
+    volt: "hover:border-[#ff7a00]/60 hover:shadow-[0_0_25px_rgba(255,122,0,0.25)]",
+    papaya: "hover:border-[#ff7a00]/60 hover:shadow-[0_0_25px_rgba(255,122,0,0.25)]",
+    cyan: "hover:border-[#38bdf8]/50 hover:shadow-[0_0_25px_rgba(56,189,248,0.2)]",
+    indigo: "hover:border-indigo-500/50 hover:shadow-[0_0_25px_rgba(99,102,241,0.2)]",
   };
 
   return (
     <div
       className={cn(
-        "relative bg-[#0a0b0e]/90 backdrop-blur-md border border-[#22252c] rounded-[8.77px] p-5 sm:p-6 transition-all duration-[750ms] ease-out",
-        interactive && "cursor-pointer hover:-translate-y-1",
+        "relative bg-[#0c1222]/80 backdrop-blur-md border border-white/10 rounded-2xl p-5 sm:p-6 transition-all duration-300 ease-out",
+        interactive && "cursor-pointer hover:-translate-y-1 hover:shadow-lg",
         glowStyles[glow] || glowStyles.none,
         className
       )}
       onClick={onClick}
       {...props}
     >
-      {/* Corner Bracket telemetry accent */}
+      {/* Corner Bracket subtle accent */}
       {bracket && (
         <>
-          <span className="absolute top-0 left-0 w-2.5 h-2.5 border-t-2 border-l-2 border-[#d2ff00]/40 pointer-events-none rounded-tl-[6.4px]" />
-          <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b-2 border-r-2 border-[#d2ff00]/40 pointer-events-none rounded-br-[6.4px]" />
+          <span className="absolute top-0 left-0 w-2.5 h-2.5 border-t border-l border-[#ff7a00]/30 pointer-events-none rounded-tl-xl" />
+          <span className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b border-r border-[#ff7a00]/30 pointer-events-none rounded-br-xl" />
         </>
       )}
       {children}

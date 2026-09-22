@@ -2,11 +2,7 @@
 
 import { useState } from "react";
 import SectionHeader from "../ui/SectionHeader";
-import Card from "../ui/Card";
-import Badge from "../ui/Badge";
-import Button from "../ui/Button";
 import { projectsData } from "@/data/projects";
-import { sound } from "@/lib/sound";
 
 export default function ProjectsGrid({ onSelectProject }) {
   const [filter, setFilter] = useState("All");
@@ -18,29 +14,25 @@ export default function ProjectsGrid({ onSelectProject }) {
     : projectsData.filter((p) => p.category === filter);
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-transparent relative">
+    <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent relative">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
-          sector="03"
-          tag="FEATURED WORK"
-          title="Projects & Applications"
-          subtitle="A selection of full-stack applications, accessible design systems, and creative digital experiments."
-          badgeVariant="volt"
+          sector="02"
+          tag="SELECTED WORKS"
+          title="Featured Projects"
+          subtitle="Production-grade full-stack applications, interactive design systems, and creative digital experiments."
         />
 
-        {/* Category Filters */}
-        <div className="flex flex-wrap items-center gap-2 mb-10">
+        {/* Minimal Category Filter Pills */}
+        <div className="flex flex-wrap items-center gap-2.5 mb-12">
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => {
-                sound.playBeep(880, 0.02);
-                setFilter(cat);
-              }}
-              className={`font-mono text-xs uppercase px-4 py-2 rounded-[39.3px] transition-all ${
+              onClick={() => setFilter(cat)}
+              className={`font-mono text-xs uppercase px-4 py-2 rounded-full transition-all duration-300 cursor-pointer ${
                 filter === cat
-                  ? "bg-[#d2ff00] text-black font-extrabold shadow-[0_0_15px_rgba(210,255,0,0.4)]"
-                  : "bg-[#14161b] text-[#a1a1aa] border border-[#22252c] hover:text-[#f4f4ed] hover:border-[#d2ff00]/40"
+                  ? "bg-[#ff7a00] text-black font-extrabold shadow-[0_0_20px_rgba(255,122,0,0.4)]"
+                  : "bg-white/[0.03] text-[#94a3b8] border border-white/10 hover:text-white hover:border-[#ff7a00]/30 hover:bg-white/[0.06]"
               }`}
             >
               {cat}
@@ -48,79 +40,68 @@ export default function ProjectsGrid({ onSelectProject }) {
           ))}
         </div>
 
-        {/* Projects Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Modern Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
           {filteredProjects.map((project) => (
-            <Card
+            <div
               key={project.id}
-              interactive
-              glow="volt"
-              className="flex flex-col justify-between p-6 space-y-6 group"
-              onClick={() => {
-                sound.playShiftBlip();
-                onSelectProject(project);
-              }}
+              onClick={() => onSelectProject(project)}
+              className="group relative rounded-3xl p-7 flex flex-col justify-between bg-[#0c1222]/70 border border-white/10 hover:border-[#ff7a00]/50 backdrop-blur-xl transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(255,122,0,0.22)] cursor-pointer overflow-hidden"
             >
-              <div className="space-y-4">
+              {/* Subtle Ambient Hover Sheen */}
+              <div className="absolute top-0 right-0 w-44 h-44 bg-[#ff7a00]/10 rounded-full blur-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <div className="space-y-5 relative z-10">
                 <div className="flex items-center justify-between">
-                  <Badge variant="volt" size="xs">
+                  <span className="text-xs font-mono font-medium px-3 py-1 rounded-full bg-[#ff7a00]/15 text-[#ff9e2c] border border-[#ff7a00]/30">
                     {project.category}
-                  </Badge>
+                  </span>
                   {project.featured && (
-                    <span className="font-mono text-[10.67px] px-2 py-0.5 rounded-[6.4px] bg-[#d2ff00] text-black font-black">
+                    <span className="text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-[#38bdf8]/15 text-[#38bdf8] border border-[#38bdf8]/30">
                       FEATURED
                     </span>
                   )}
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-extrabold text-[#f4f4ed] group-hover:text-[#d2ff00] transition-colors uppercase leading-snug">
+                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#ff9e2c] transition-colors tracking-tight leading-snug">
                     {project.title}
                   </h3>
-                  <p className="font-mono text-xs text-[#a1a1aa] mt-1.5 line-clamp-2">
+                  <p className="font-mono text-xs text-[#38bdf8] mt-1.5 line-clamp-1">
                     {project.tagline}
                   </p>
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#71717a] line-clamp-3 leading-relaxed">
+                <p className="text-sm text-[#94a3b8] line-clamp-3 leading-relaxed font-normal">
                   {project.description}
                 </p>
 
-                {/* Key Stat pill if exists */}
                 {project.stats && (
-                  <div className="p-2.5 rounded-[6.4px] bg-[#14161b] border border-[#22252c] flex items-center justify-between text-xs font-mono">
-                    <span className="text-[#a1a1aa]">METRIC:</span>
-                    <span className="text-[#d2ff00] font-bold">{Object.values(project.stats)[0]}</span>
+                  <div className="p-3 rounded-2xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-between text-xs font-mono">
+                    <span className="text-[#64748b]">Highlight:</span>
+                    <span className="text-white font-medium">{Object.values(project.stats)[0]}</span>
                   </div>
                 )}
               </div>
 
-              {/* Bottom tag & action preview */}
-              <div className="space-y-4 pt-4 border-t border-[#22252c]">
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tags.slice(0, 3).map((tag) => (
-                    <Badge key={tag} variant="dark" size="xs">
+              {/* Bottom Tags & View Link */}
+              <div className="pt-6 mt-6 border-t border-white/[0.08] relative z-10 flex items-center justify-between">
+                <div className="flex flex-wrap gap-1.5 max-w-[70%]">
+                  {project.tags.slice(0, 3).map((tag, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-white/[0.04] text-[#94a3b8] border border-white/5"
+                    >
                       {tag}
-                    </Badge>
+                    </span>
                   ))}
-                  {project.tags.length > 3 && (
-                    <Badge variant="dark" size="xs">
-                      +{project.tags.length - 3}
-                    </Badge>
-                  )}
                 </div>
 
-                <div className="flex items-center justify-between pt-1">
-                  <span className="font-mono text-xs text-[#d2ff00] group-hover:translate-x-1 transition-transform flex items-center gap-1 font-bold">
-                    <span>View Project Details</span>
-                    <span>→</span>
-                  </span>
-                  <span className="text-xs text-[#a1a1aa] font-mono">
-                    [INSPECT]
-                  </span>
-                </div>
+                <span className="text-xs font-mono font-semibold text-[#ff9e2c] group-hover:text-white transition-colors flex items-center gap-1">
+                  Inspect ↗
+                </span>
               </div>
-            </Card>
+            </div>
           ))}
         </div>
       </div>

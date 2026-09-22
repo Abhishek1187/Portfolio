@@ -39,18 +39,18 @@ export default function Modal({ isOpen, onClose, project }) {
     >
       <div
         ref={modalRef}
-        className="relative w-full max-w-2xl bg-[#0a0b0e] border border-[#22252c] rounded-[8.77px] p-6 sm:p-8 shadow-[0_0_50px_rgba(0,0,0,0.8)] overflow-hidden"
-        style={{ borderTopColor: project.accentColor || "#d2ff00", borderTopWidth: 3 }}
+        className="relative w-full max-w-2xl bg-[#0d111c] border border-white/10 rounded-2xl p-6 sm:p-8 shadow-[0_0_50px_rgba(0,0,0,0.9)] overflow-hidden backdrop-blur-2xl"
+        style={{ borderTopColor: project.accentColor || "#6366f1", borderTopWidth: 3 }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Top telemetry bar */}
-        <div className="flex items-center justify-between border-b border-[#22252c] pb-4 mb-6">
+        {/* Top bar */}
+        <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
           <div className="flex items-center gap-2">
-            <Badge variant="solidVolt" size="xs">
-              QUEST LOG
+            <Badge variant="indigo" size="xs">
+              PROJECT OVERVIEW
             </Badge>
-            <span className="font-mono text-xs text-[#a1a1aa] uppercase tracking-wider">
-              ID: {project.id}
+            <span className="font-mono text-xs text-slate-400 uppercase tracking-wider">
+              {project.id}
             </span>
           </div>
           <button
@@ -58,7 +58,7 @@ export default function Modal({ isOpen, onClose, project }) {
               sound.playBeep(440, 0.04);
               onClose();
             }}
-            className="text-[#a1a1aa] hover:text-[#d2ff00] p-1 rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d2ff00]"
+            className="text-slate-400 hover:text-white p-1 rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 cursor-pointer"
             aria-label="Close modal"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,30 +69,30 @@ export default function Modal({ isOpen, onClose, project }) {
 
         {/* Title & category */}
         <div className="mb-4">
-          <Badge variant="volt" size="sm" className="mb-2">
+          <Badge variant="cyan" size="sm" className="mb-2">
             {project.category}
           </Badge>
-          <h3 id="modal-title" className="text-xl sm:text-2xl font-extrabold text-[#f4f4ed] uppercase">
+          <h3 id="modal-title" className="text-xl sm:text-2xl font-bold text-white tracking-tight">
             {project.title}
           </h3>
-          <p className="text-sm font-mono text-[#d2ff00] mt-1">{project.tagline}</p>
+          <p className="text-sm font-mono text-cyan-400 mt-1">{project.tagline}</p>
         </div>
 
         {/* Full description */}
-        <p className="text-sm sm:text-base text-[#a1a1aa] leading-relaxed mb-6">
+        <p className="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
           {project.description}
         </p>
 
         {/* Highlights */}
         {project.highlights && (
-          <div className="mb-6 bg-[#14161b]/80 border border-[#22252c] rounded-[6.4px] p-4">
-            <h4 className="text-xs font-mono uppercase text-[#d2ff00] font-bold mb-3 tracking-wider">
-              KEY MISSION HIGHLIGHTS
+          <div className="mb-6 bg-[#131827]/80 border border-white/10 rounded-xl p-5">
+            <h4 className="text-xs font-mono uppercase text-indigo-400 font-semibold mb-3 tracking-wider">
+              KEY HIGHLIGHTS & ARCHITECTURE
             </h4>
-            <ul className="space-y-2">
+            <ul className="space-y-2.5">
               {project.highlights.map((h, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-[#f4f4ed]">
-                  <span className="text-[#d2ff00] font-mono select-none">▶</span>
+                <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200">
+                  <span className="text-indigo-400 font-mono select-none">▶</span>
                   <span>{h}</span>
                 </li>
               ))}
@@ -110,7 +110,7 @@ export default function Modal({ isOpen, onClose, project }) {
         </div>
 
         {/* Action buttons */}
-        <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-[#22252c]">
+        <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-white/10">
           <Button variant="ghost" size="sm" onClick={onClose}>
             Close Window
           </Button>
@@ -126,7 +126,7 @@ export default function Modal({ isOpen, onClose, project }) {
                 </svg>
               }
             >
-              Open Transmission
+              Visit Project
             </Button>
           )}
         </div>

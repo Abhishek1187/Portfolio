@@ -1,23 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import ProjectsGrid from "@/components/sections/ProjectsGrid";
 import Skills from "@/components/sections/Skills";
-import GamerCorner from "@/components/sections/GamerCorner";
+import BeyondCode from "@/components/sections/BeyondCode";
 import CareerTimeline from "@/components/sections/CareerTimeline";
 import RadioContact from "@/components/sections/RadioContact";
 import Modal from "@/components/ui/Modal";
 import DynamicScrollBackground from "@/components/ui/DynamicScrollBackground";
-import CyberParticles from "@/components/ui/CyberParticles";
 import { sound } from "@/lib/sound";
 
 export default function Home() {
   const [isMuted, setIsMuted] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+
+  useEffect(() => {
+    // Ensure the application always starts at the top on initial load or refresh
+    if (typeof window !== "undefined") {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+
+      // If page was loaded with a URL hash (e.g. #projects or #contact), remove it
+      // so the browser does not jump down into the middle of the page
+      if (window.location.hash) {
+        window.history.replaceState(null, "", window.location.pathname);
+        window.scrollTo(0, 0);
+      }
+    }
+  }, []);
 
   const handleToggleMute = () => {
     const muted = sound.toggleMute();
@@ -28,12 +44,9 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen text-[#f4f4ed] flex flex-col selection:bg-[#d2ff00] selection:text-black overflow-x-hidden">
-      {/* 1. Full-Page Dynamic Scroll Gradient & Topographic Contour Texture */}
+    <div className="relative min-h-screen bg-black text-[#f8fafc] flex flex-col selection:bg-[#6366f1] selection:text-white overflow-x-hidden">
+      {/* 1. Architectural Micro-Grid on Pitch Black Background */}
       <DynamicScrollBackground />
-
-      {/* 2. Ambient Cyber Particles */}
-      <CyberParticles />
 
       {/* Top Floating HUD Navbar */}
       <Navbar
@@ -55,8 +68,8 @@ export default function Home() {
         {/* Skills & Tech Stack */}
         <Skills />
 
-        {/* Dedicated Gamer Corner (Valorant Rank, Combat Stats, Recent Games, Battlestation) */}
-        <GamerCorner />
+        {/* Beyond Code (Tactical Thinking, Deep Work Battlestation, Creative Craft) */}
+        <BeyondCode />
 
         {/* Experience & Education Timeline */}
         <CareerTimeline />

@@ -60,7 +60,7 @@ export default function GamerCorner() {
 
                   <button
                     onClick={handleCopyRiotId}
-                    className="font-mono text-xs px-3 py-1.5 rounded-[39.3px] bg-[#14161b] border border-[#22252c] hover:border-[#d2ff00] text-[#f4f4ed] transition-colors"
+                    className="font-mono text-xs px-3.5 py-1.5 rounded-[39.3px] bg-[#14161b] border border-[#22252c] hover:border-[#d2ff00] text-[#f4f4ed] transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d2ff00]"
                   >
                     {copiedId ? "✓ Copied ID!" : "Copy Riot ID"}
                   </button>
