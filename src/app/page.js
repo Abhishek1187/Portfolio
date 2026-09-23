@@ -78,7 +78,7 @@ export default function Home() {
         <RadioContact />
       </main>
 
-      {/* Footer */}
+      {/* Bottom-Connected Mountain Ridge Footer with Crossing Ribbon */}
       <Footer />
 
       {/* Project Detail Modal Dialog */}

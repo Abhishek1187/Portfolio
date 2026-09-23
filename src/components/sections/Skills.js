@@ -99,6 +99,74 @@ export default function Skills() {
     };
   }, [viewMode, isMobile]);
 
+  // Continuous Harmonic Zero-G Cosmic Drift Animation Loop
+  useEffect(() => {
+    if (viewMode !== "grid") return;
+    const stage = stageRef.current;
+    if (!stage) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    const floatInners = stage.querySelectorAll(".floating-inner");
+    if (!floatInners.length) return;
+
+    const tweens = [];
+
+    floatInners.forEach((inner, idx) => {
+      // Deterministic pseudo-random parameters for organic multi-axis drift
+      const durX = 3.6 + ((idx * 0.73) % 2.8);
+      const durY = 4.2 + ((idx * 0.91) % 3.2);
+      const durRot = 5.5 + ((idx * 1.1) % 3.0);
+
+      const deltaX = (idx % 2 === 0 ? 1 : -1) * (12 + ((idx * 4) % 14));
+      const deltaY = (idx % 3 === 0 ? 1 : -1) * (14 + ((idx * 5) % 16));
+      const deltaRot = (idx % 2 === 0 ? 1 : -1) * (3.5 + ((idx * 1.3) % 3.5));
+
+      const delay = (idx * 0.28) % 1.6;
+
+      // X-axis gentle harmonic wave
+      const twX = gsap.to(inner, {
+        x: deltaX,
+        duration: durX,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay,
+      });
+
+      // Y-axis gentle harmonic wave (different frequency for Lissajous organic curve)
+      const twY = gsap.to(inner, {
+        y: deltaY,
+        duration: durY,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: delay * 0.8,
+      });
+
+      // Subtle aerodynamic micro-tilt
+      const twRot = gsap.to(inner, {
+        rotation: deltaRot,
+        duration: durRot,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        delay: delay * 1.2,
+      });
+
+      tweens.push(twX, twY, twRot);
+    });
+
+    return () => {
+      tweens.forEach((t) => t.kill());
+      floatInners.forEach((inner) => {
+        gsap.killTweensOf(inner);
+        inner.style.transform = "none";
+      });
+    };
+  }, [viewMode, isMobile]);
+
   // Asymmetric spatial distribution matching reference screenshot
   const DESKTOP_COORDS = [
     { x: "10%", y: "18%" },  // React.js (top left)
@@ -211,45 +279,47 @@ export default function Skills() {
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: "8px",
                     pointerEvents: "none",
                     willChange: "transform",
                     WebkitFontSmoothing: "subpixel-antialiased",
                     zIndex: 1,
                   }}
                 >
-                  {/* Floating Icon - Zero Boundary */}
-                  <div
-                    style={{
-                      width: "44px",
-                      height: "44px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      pointerEvents: "none",
-                      filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.6))",
-                    }}
-                  >
-                    <TechIcon name={skill.icon} className="w-10 h-10" />
-                  </div>
+                  {/* Floating Cosmic Drift Inner Container */}
+                  <div className="floating-inner flex flex-col items-center justify-center gap-2 will-change-transform pointer-events-none">
+                    {/* Floating Icon - Zero Boundary */}
+                    <div
+                      style={{
+                        width: "44px",
+                        height: "44px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        pointerEvents: "none",
+                        filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.6))",
+                      }}
+                    >
+                      <TechIcon name={skill.icon} className="w-10 h-10" />
+                    </div>
 
-                  {/* Clean Text Label */}
-                  <span
-                    style={{
-                      fontFamily: "Mori, sans-serif",
-                      fontWeight: 600,
-                      fontSize: "0.86rem",
-                      color: "#fffce1",
-                      textAlign: "center",
-                      display: "inline-block",
-                      whiteSpace: "nowrap",
-                      pointerEvents: "none",
-                      letterSpacing: "-0.01em",
-                      textShadow: "0 2px 8px rgba(0,0,0,0.85)",
-                    }}
-                  >
-                    {skill.name}
-                  </span>
+                    {/* Clean Text Label */}
+                    <span
+                      style={{
+                        fontFamily: "Mori, sans-serif",
+                        fontWeight: 600,
+                        fontSize: "0.86rem",
+                        color: "#fffce1",
+                        textAlign: "center",
+                        display: "inline-block",
+                        whiteSpace: "nowrap",
+                        pointerEvents: "none",
+                        letterSpacing: "-0.01em",
+                        textShadow: "0 2px 8px rgba(0,0,0,0.85)",
+                      }}
+                    >
+                      {skill.name}
+                    </span>
+                  </div>
                 </div>
               );
             })}

@@ -22,16 +22,29 @@ export default function MagneticContactButton({
     const label = labelRef.current;
     if (!zone || !btn || !label) return;
 
-    // Check reduced motion
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReducedMotion) return;
+    let floatLoop = null;
 
-    const strength = 0.38;
+    // Check reduced motion
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!prefersReducedMotion) {
+      // Continuous harmonic float & micro-tilt loop (ambient idle motion)
+      floatLoop = gsap.to(btn, {
+        y: -3.5,
+        rotation: 1.8,
+        duration: 2.2,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+      });
+    }
+
+    const strength = 0.4;
     const labelStrength = 0.22;
 
-    // Magnetic pull on mousemove inside zone
+    // Magnetic pull on mousemove inside zone (overwrite: "auto" preserves rotation loop)
     const handleMouseMove = (e) => {
       const rect = zone.getBoundingClientRect();
       const mapX = gsap.utils.mapRange(
@@ -52,8 +65,8 @@ export default function MagneticContactButton({
       gsap.to(btn, {
         x: mapX * strength,
         y: mapY * strength,
-        scale: 1.05,
-        duration: 0.35,
+        scale: 1.04,
+        duration: 0.4,
         ease: "power2.out",
         overwrite: "auto",
       });
@@ -61,13 +74,13 @@ export default function MagneticContactButton({
       gsap.to(label, {
         x: mapX * labelStrength,
         y: mapY * labelStrength,
-        duration: 0.35,
+        duration: 0.4,
         ease: "power2.out",
         overwrite: true,
       });
     };
 
-    // Elastic snap-back on mouseleave
+    // Elastic snap-back on mouseleave (resumes idle float position smoothly)
     const handleMouseLeave = () => {
       gsap.to(btn, {
         x: 0,
@@ -93,6 +106,7 @@ export default function MagneticContactButton({
     return () => {
       zone.removeEventListener("mousemove", handleMouseMove);
       zone.removeEventListener("mouseleave", handleMouseLeave);
+      if (floatLoop) floatLoop.kill();
       gsap.killTweensOf(btn);
       gsap.killTweensOf(label);
     };
@@ -108,6 +122,7 @@ export default function MagneticContactButton({
   };
 
   const isDark = variant === "dark";
+  const isGhost = variant === "ghost";
 
   return (
     <div
@@ -126,30 +141,37 @@ export default function MagneticContactButton({
         ref={btnRef}
         href={href}
         onClick={handleClick}
-        className="mag-btn"
+        className="mag-btn group"
         style={{
           position: "relative",
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: "10px 22px",
+          padding: isGhost ? "9px 20px" : "10px 22px",
           borderRadius: "99px",
-          border: isDark ? "1px solid rgba(0, 0, 0, 0.4)" : "none",
+          border: isGhost
+            ? "1px solid rgba(255, 255, 255, 0.15)"
+            : isDark
+            ? "1px solid rgba(0, 0, 0, 0.4)"
+            : "none",
           cursor: "pointer",
           fontFamily:
             "var(--font-geist-sans), -apple-system, BlinkMacSystemFont, sans-serif",
-          fontWeight: 800,
-          fontSize: "0.82rem",
-          letterSpacing: "0.06em",
+          fontWeight: 700,
+          fontSize: isGhost ? "0.85rem" : "0.82rem",
+          letterSpacing: "0.05em",
           textTransform: "uppercase",
-          color: isDark ? "#ffa726" : "#05070f",
+          color: isGhost ? "#f8fafc" : isDark ? "#ffa726" : "#05070f",
           overflow: "hidden",
           textDecoration: "none",
           willChange: "transform",
-          boxShadow: isDark
+          boxShadow: isGhost
+            ? "none"
+            : isDark
             ? "0 4px 18px rgba(0, 0, 0, 0.45), inset 0 1px 1.5px rgba(255, 255, 255, 0.25), 0 0 10px rgba(255, 122, 0, 0.3)"
             : "0 0 28px rgba(255, 122, 0, 0.65), 0 0 12px rgba(255, 184, 51, 0.5), inset 0 1.5px 2px rgba(255, 255, 255, 0.85)",
           outline: "none",
+          transition: "border-color 0.2s ease, background 0.2s ease",
         }}
         aria-label="Get In Touch"
       >
@@ -161,29 +183,33 @@ export default function MagneticContactButton({
             position: "absolute",
             inset: 0,
             borderRadius: "99px",
-            background: isDark
+            background: isGhost
+              ? "rgba(255, 255, 255, 0.03)"
+              : isDark
               ? "linear-gradient(135deg, #05070f 0%, #151b2e 100%)"
               : "linear-gradient(114.41deg, #fff39e 0%, #ffa51f 25%, #ff6a00 65%, #ea580c 100%)",
             zIndex: 0,
-            transition: "filter 0.3s ease",
+            transition: "all 0.2s ease",
           }}
         />
 
-        {/* Ambient Subtle Pulse Ring */}
-        <span
-          style={{
-            position: "absolute",
-            inset: "-2px",
-            borderRadius: "99px",
-            background: isDark
-              ? "linear-gradient(114.41deg, #ff7a00, #ff9e2c, #ff5500)"
-              : "linear-gradient(114.41deg, #ffe066, #ff9e2c, #ff6a00, #ff4000)",
-            zIndex: -1,
-            opacity: 0.7,
-            filter: "blur(7px)",
-            pointerEvents: "none",
-          }}
-        />
+        {/* Ambient Subtle Pulse Ring - Disabled on ghost */}
+        {!isGhost && (
+          <span
+            style={{
+              position: "absolute",
+              inset: "-2px",
+              borderRadius: "99px",
+              background: isDark
+                ? "linear-gradient(114.41deg, #ff7a00, #ff9e2c, #ff5500)"
+                : "linear-gradient(114.41deg, #ffe066, #ff9e2c, #ff6a00, #ff4000)",
+              zIndex: -1,
+              opacity: 0.7,
+              filter: "blur(7px)",
+              pointerEvents: "none",
+            }}
+          />
+        )}
 
         {/* Floating Label with Micro 3D Parallax */}
         <span
@@ -197,7 +223,7 @@ export default function MagneticContactButton({
             alignItems: "center",
             gap: "6px",
             willChange: "transform",
-            color: isDark ? "#ffa726" : "#05070f",
+            color: isGhost ? "#f8fafc" : isDark ? "#ffa726" : "#05070f",
           }}
         >
           <span>Get In Touch</span>
@@ -207,7 +233,7 @@ export default function MagneticContactButton({
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
             style={{

@@ -1,11 +1,40 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 import Button from "../ui/Button";
+import MagneticContactButton from "../ui/MagneticContactButton";
 import TextReveal from "../ui/TextReveal";
 import KineticName from "../ui/KineticName";
 import { profileData } from "@/data/profile";
 
 export default function Hero() {
+  const techStackBtnRef = useRef(null);
+
+  useEffect(() => {
+    const el = techStackBtnRef.current;
+    if (!el) return;
+
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    // Cinematic Breathing Drift (Variant C): micro-scale pulse & gentle vertical hover wave
+    const tween = gsap.to(el, {
+      scale: 1.025,
+      y: -2,
+      duration: 1.8,
+      yoyo: true,
+      repeat: -1,
+      ease: "sine.inOut",
+    });
+
+    return () => {
+      tween.kill();
+    };
+  }, []);
+
   return (
     <section className="relative min-h-[85vh] flex items-center justify-center pt-28 pb-14 px-4 sm:px-6 lg:px-8 bg-transparent overflow-hidden">
       {/* 1. Pure Radiant Shiny Orange Ambient Mesh Backlight */}
@@ -70,7 +99,7 @@ export default function Hero() {
           </div>
         </TextReveal>
 
-        {/* 4. Compact Ergonomic Action CTAs */}
+        {/* 4. Compact Ergonomic Action CTAs with Breathing Drift & Magnetic Physics */}
         <div className="flex flex-wrap items-center gap-3 pt-1">
           <Button
             variant="primary"
@@ -85,22 +114,21 @@ export default function Hero() {
           >
             Explore Projects
           </Button>
-          <Button
-            variant="outline"
-            size="md"
-            href="#skills"
-            className="hover:border-[#ff7a00]/50 hover:text-[#ff9e2c] hover:bg-[#ff7a00]/10"
-          >
-            Tech Stack
-          </Button>
-          <Button
-            variant="ghost"
-            size="md"
-            href="#contact"
-            className="hover:border-[#ff7a00]/40 hover:text-white"
-          >
-            Get In Touch
-          </Button>
+
+          {/* Tech Stack Button with Cinematic Breathing Drift Animation */}
+          <div ref={techStackBtnRef} className="inline-flex will-change-transform">
+            <Button
+              variant="outline"
+              size="md"
+              href="#skills"
+              className="hover:border-[#ff7a00]/50 hover:text-[#ff9e2c] hover:bg-[#ff7a00]/10"
+            >
+              Tech Stack
+            </Button>
+          </div>
+
+          {/* Magnetic Harmonic Get In Touch Button */}
+          <MagneticContactButton variant="ghost" href="#contact" />
         </div>
 
         {/* Picture Card preserved commented out for later as requested */}
