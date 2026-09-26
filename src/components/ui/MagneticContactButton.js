@@ -133,7 +133,6 @@ export default function MagneticContactButton({
         alignItems: "center",
         justifyContent: "center",
         position: "relative",
-        cursor: "pointer",
         padding: "4px",
       }}
     >
@@ -141,7 +140,7 @@ export default function MagneticContactButton({
         ref={btnRef}
         href={href}
         onClick={handleClick}
-        className="mag-btn group"
+        className="mag-btn group cursor-pointer"
         style={{
           position: "relative",
           display: "inline-flex",
@@ -154,7 +153,6 @@ export default function MagneticContactButton({
             : isDark
             ? "1px solid rgba(0, 0, 0, 0.4)"
             : "none",
-          cursor: "pointer",
           fontFamily:
             "var(--font-geist-sans), -apple-system, BlinkMacSystemFont, sans-serif",
           fontWeight: 700,

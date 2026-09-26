@@ -14,7 +14,7 @@ export default function SectionHeader({
         <TextReveal preset="fade-up" delay={0}>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0c1222] border border-white/10 text-xs font-mono font-medium text-[#38bdf8]">
             <span className="w-1.5 h-1.5 rounded-full bg-[#ff7a00] shadow-[0_0_8px_#ff7a00] animate-pulse" />
-            <span className="tracking-widest uppercase">{sector} // {tag}</span>
+            <span className="tracking-widest uppercase">{tag}</span>
           </div>
         </TextReveal>
         <div className="h-px flex-1 bg-gradient-to-r from-white/10 via-white/5 to-transparent" />

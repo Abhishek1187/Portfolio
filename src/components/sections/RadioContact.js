@@ -44,7 +44,7 @@ export default function RadioContact() {
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           sector="06"
-          tag="06 // GET IN TOUCH"
+          tag="GET IN TOUCH"
           title="Let's Build Something Exceptional"
           subtitle="Actively exploring full-time Software Engineer and Full-Stack Developer opportunities. Let's discuss how I can create value on your team."
           badgeVariant="indigo"

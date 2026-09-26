@@ -3,17 +3,11 @@
 import { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import SectionHeader from "../ui/SectionHeader";
-import Card from "../ui/Card";
-import Badge from "../ui/Badge";
-import TelemetryMeter from "../ui/TelemetryMeter";
 import TechIcon from "../ui/TechIcon";
 import { skillsData } from "@/data/skills";
-import { sound } from "@/lib/sound";
 
 export default function Skills() {
-  const [viewMode, setViewMode] = useState("grid"); // "grid" or "breakdown"
   const [isMobile, setIsMobile] = useState(false);
-
   const stageRef = useRef(null);
 
   useEffect(() => {
@@ -27,7 +21,6 @@ export default function Skills() {
 
   // GSAP Proximity Scale effect listener
   useEffect(() => {
-    if (viewMode !== "grid") return;
     const stage = stageRef.current;
     if (!stage) return;
 
@@ -35,8 +28,9 @@ export default function Skills() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
 
-    const radius = 200;
-    const maxScale = 2.5;
+    const radius = 220;
+    const baseScale = 0.65;
+    const maxScale = 1.35;
     const dur = 0.35;
 
     const handleMouseMove = (e) => {
@@ -54,17 +48,35 @@ export default function Skills() {
         );
         const p = gsap.utils.clamp(0, 1, gsap.utils.mapRange(0, radius, 1, 0, d));
 
+        // High-fidelity scale: scales from native downscale (0.65) up to maxScale (1.35)
+        // Never exceeds rasterization boundary, guaranteeing 100% crisp sharpness
         gsap.to(item, {
-          scale: 1 + (maxScale - 1) * p,
+          scale: baseScale + (maxScale - baseScale) * p,
           duration: dur,
           overwrite: "auto",
           ease: "power2.out",
+          zIndex: p > 0.05 ? 50 : 1,
         });
 
-        if (p > 0.05) {
-          item.style.zIndex = Math.round(50 * p) + 10;
-        } else {
-          item.style.zIndex = "1";
+        // GPU-composited ambient glow halo (zero filter thrashing, zero blurriness)
+        const glow = item.querySelector(".icon-glow");
+        if (glow) {
+          gsap.to(glow, {
+            opacity: p > 0.05 ? p * 0.9 : 0,
+            scale: 0.8 + p * 0.45,
+            duration: dur,
+            overwrite: "auto",
+          });
+        }
+
+        // Clean text brightness enhancement
+        const textLabel = item.querySelector(".text-label");
+        if (textLabel) {
+          gsap.to(textLabel, {
+            color: p > 0.1 ? "#ffffff" : "#fffce1",
+            duration: dur,
+            overwrite: "auto",
+          });
         }
       });
     };
@@ -73,14 +85,29 @@ export default function Skills() {
       const items = stage.querySelectorAll(".proximity-item");
       items.forEach((item) => {
         gsap.to(item, {
-          scale: 1,
-          duration: dur * 2,
+          scale: baseScale,
+          duration: 0.5,
           overwrite: "auto",
           ease: "power2.out",
-          onComplete: () => {
-            item.style.zIndex = "1";
-          },
+          zIndex: 1,
         });
+        const glow = item.querySelector(".icon-glow");
+        if (glow) {
+          gsap.to(glow, {
+            opacity: 0,
+            scale: 0.8,
+            duration: 0.5,
+            overwrite: "auto",
+          });
+        }
+        const textLabel = item.querySelector(".text-label");
+        if (textLabel) {
+          gsap.to(textLabel, {
+            color: "#fffce1",
+            duration: 0.5,
+            overwrite: "auto",
+          });
+        }
       });
     };
 
@@ -93,15 +120,14 @@ export default function Skills() {
       const items = stage.querySelectorAll(".proximity-item");
       items.forEach((item) => {
         gsap.killTweensOf(item);
-        item.style.transform = "scale(1)";
+        item.style.transform = `translate3d(-50%, -50%, 0) scale(${baseScale})`;
         item.style.zIndex = "1";
       });
     };
-  }, [viewMode, isMobile]);
+  }, [isMobile]);
 
   // Continuous Harmonic Zero-G Cosmic Drift Animation Loop
   useEffect(() => {
-    if (viewMode !== "grid") return;
     const stage = stageRef.current;
     if (!stage) return;
 
@@ -165,37 +191,45 @@ export default function Skills() {
         inner.style.transform = "none";
       });
     };
-  }, [viewMode, isMobile]);
+  }, [isMobile]);
 
-  // Asymmetric spatial distribution matching reference screenshot
+  // Asymmetric spatial distribution for 16 skills
   const DESKTOP_COORDS = [
-    { x: "10%", y: "18%" },  // React.js (top left)
-    { x: "34%", y: "10%" },  // Node.js (top mid-left)
-    { x: "64%", y: "14%" },  // Express.js (top mid-right)
-    { x: "88%", y: "12%" },  // JavaScript (top right)
-    { x: "14%", y: "50%" },  // TypeScript (mid left)
-    { x: "45%", y: "44%" },  // C++ (center)
-    { x: "77%", y: "47%" },  // Python (mid right)
-    { x: "7%", y: "84%" },   // Java (bottom left)
-    { x: "33%", y: "82%" },  // MongoDB (bottom mid-left)
-    { x: "52%", y: "67%" },  // Firebase (center lower)
-    { x: "66%", y: "86%" },  // Supabase (bottom mid-right)
-    { x: "90%", y: "80%" },  // Tailwind CSS (bottom right)
+    { x: "10%", y: "16%" },  // 1. React.js (top left)
+    { x: "32%", y: "11%" },  // 2. Node.js (top mid-left)
+    { x: "55%", y: "14%" },  // 3. Express.js (top mid)
+    { x: "75%", y: "11%" },  // 4. JavaScript (top mid-right)
+    { x: "92%", y: "17%" },  // 5. TypeScript (top right)
+    { x: "12%", y: "41%" },  // 6. Redux (mid left)
+    { x: "35%", y: "37%" },  // 7. C++ (mid center-left)
+    { x: "62%", y: "41%" },  // 8. Python (mid center-right)
+    { x: "87%", y: "39%" },  // 9. MongoDB (mid right)
+    { x: "26%", y: "65%" },  // 10. Redis (lower mid-left)
+    { x: "50%", y: "63%" },  // 11. Firebase (center lower)
+    { x: "74%", y: "65%" },  // 12. Supabase (lower mid-right)
+    { x: "8%", y: "70%" },   // 13. Docker (lower left)
+    { x: "33%", y: "89%" },  // 14. Linux (bottom mid-left)
+    { x: "65%", y: "89%" },  // 15. AWS (bottom mid-right)
+    { x: "92%", y: "69%" },  // 16. Tailwind CSS (lower right)
   ];
 
   const MOBILE_COORDS = [
-    { x: "24%", y: "8%" },
-    { x: "76%", y: "13%" },
-    { x: "28%", y: "24%" },
-    { x: "74%", y: "29%" },
-    { x: "22%", y: "41%" },
-    { x: "78%", y: "46%" },
-    { x: "26%", y: "58%" },
-    { x: "72%", y: "63%" },
-    { x: "24%", y: "75%" },
-    { x: "78%", y: "79%" },
-    { x: "28%", y: "91%" },
-    { x: "74%", y: "94%" },
+    { x: "24%", y: "4%" },   // 1. React.js
+    { x: "76%", y: "10%" },  // 2. Node.js
+    { x: "26%", y: "16%" },  // 3. Express.js
+    { x: "74%", y: "22%" },  // 4. JavaScript
+    { x: "22%", y: "28%" },  // 5. TypeScript
+    { x: "78%", y: "34%" },  // 6. Redux
+    { x: "25%", y: "40%" },  // 7. C++
+    { x: "75%", y: "46%" },  // 8. Python
+    { x: "24%", y: "52%" },  // 9. MongoDB
+    { x: "76%", y: "58%" },  // 10. Redis
+    { x: "24%", y: "64%" },  // 11. Firebase
+    { x: "76%", y: "70%" },  // 12. Supabase
+    { x: "24%", y: "76%" },  // 13. Docker
+    { x: "76%", y: "82%" },  // 14. Linux
+    { x: "26%", y: "88%" },  // 15. AWS
+    { x: "74%", y: "94%" },  // 16. Tailwind CSS
   ];
 
   const coords = isMobile ? MOBILE_COORDS : DESKTOP_COORDS;
@@ -203,195 +237,106 @@ export default function Skills() {
   return (
     <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 bg-transparent relative">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-          <SectionHeader
-            sector="03"
-            tag="EXPERTISE & STACK"
-            title="Skills & Technologies"
-            subtitle="Modern languages, frameworks, databases, and architectural tools I use to engineer clean, high-performance web products."
-            className="mb-0"
-          />
+        <SectionHeader
+          sector="03"
+          tag="EXPERTISE & STACK"
+          title="Skills & Technologies"
+          subtitle="Modern languages, frameworks, databases, and architectural tools I use to engineer clean, high-performance web products."
+          className="mb-12"
+        />
 
-          {/* View Toggle */}
-          <div className="flex items-center gap-1.5 p-1 rounded-full bg-white/[0.04] border border-white/10 self-start sm:self-auto shrink-0 mb-6 sm:mb-0 backdrop-blur-md">
-            <button
-              onClick={() => {
-                sound.playBeep(880, 0.02);
-                setViewMode("grid");
-              }}
-              className={`font-mono text-xs uppercase px-4 py-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                viewMode === "grid"
-                  ? "bg-[#ff7a00] text-black font-extrabold shadow-[0_0_15px_rgba(255,122,0,0.4)]"
-                  : "text-[#94a3b8] hover:text-white"
-              }`}
-            >
-              Asymmetric Scatter
-            </button>
-            <button
-              onClick={() => {
-                sound.playBeep(980, 0.02);
-                setViewMode("breakdown");
-              }}
-              className={`font-mono text-xs uppercase px-4 py-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                viewMode === "breakdown"
-                  ? "bg-[#ff7a00] text-black font-extrabold shadow-[0_0_15px_rgba(255,122,0,0.4)]"
-                  : "text-[#94a3b8] hover:text-white"
-              }`}
-            >
-              Proficiency Breakdown
-            </button>
-          </div>
-        </div>
-
-        {/* 1. Boundary-Free Asymmetric Kinetic Scatter Canvas */}
-        {viewMode === "grid" ? (
-          <div
-            id="stage"
-            ref={stageRef}
-            style={{
-              position: "relative",
-              width: "100%",
-              height: isMobile ? "680px" : "560px",
-              cursor: "crosshair",
-              background: "transparent",
-              border: "none",
-              boxShadow: "none",
-              userSelect: "none",
-              overflow: "visible",
-            }}
-          >
-            {skillsData.featured.map((skill, idx) => {
-              const pos = coords[idx] || { x: "50%", y: "50%" };
-              return (
-                <div
-                  key={idx}
-                  className="proximity-item"
-                  style={{
-                    position: "absolute",
-                    left: pos.x,
-                    top: pos.y,
-                    transform: "translate(-50%, -50%)",
-                    transformOrigin: "center center",
-                    background: "transparent",
-                    border: "none",
-                    boxShadow: "none",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    pointerEvents: "none",
-                    willChange: "transform",
-                    WebkitFontSmoothing: "subpixel-antialiased",
-                    zIndex: 1,
-                  }}
-                >
-                  {/* Floating Cosmic Drift Inner Container */}
-                  <div className="floating-inner flex flex-col items-center justify-center gap-2 will-change-transform pointer-events-none">
-                    {/* Floating Icon - Zero Boundary */}
-                    <div
-                      style={{
-                        width: "44px",
-                        height: "44px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        pointerEvents: "none",
-                        filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.6))",
-                      }}
-                    >
-                      <TechIcon name={skill.icon} className="w-10 h-10" />
-                    </div>
-
-                    {/* Clean Text Label */}
-                    <span
-                      style={{
-                        fontFamily: "Mori, sans-serif",
-                        fontWeight: 600,
-                        fontSize: "0.86rem",
-                        color: "#fffce1",
-                        textAlign: "center",
-                        display: "inline-block",
-                        whiteSpace: "nowrap",
-                        pointerEvents: "none",
-                        letterSpacing: "-0.01em",
-                        textShadow: "0 2px 8px rgba(0,0,0,0.85)",
-                      }}
-                    >
-                      {skill.name}
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-
-
-          /* 2. Detailed Category Breakdown View with Logos */
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
-            {skillsData.categories.map((category, idx) => (
-              <Card
+        {/* Boundary-Free Asymmetric Kinetic Scatter Canvas */}
+        <div
+          id="stage"
+          ref={stageRef}
+          style={{
+            position: "relative",
+            width: "100%",
+            height: isMobile ? "920px" : "640px",
+            cursor: "crosshair",
+            background: "transparent",
+            border: "none",
+            boxShadow: "none",
+            userSelect: "none",
+            overflow: "visible",
+          }}
+        >
+          {skillsData.featured.map((skill, idx) => {
+            const pos = coords[idx] || { x: "50%", y: "50%" };
+            return (
+              <div
                 key={idx}
-                glow={idx === 0 ? "orange" : idx === 1 ? "cyan" : "indigo"}
-                className="p-6 sm:p-8 space-y-6 flex flex-col justify-between"
+                className="proximity-item"
+                style={{
+                  position: "absolute",
+                  left: pos.x,
+                  top: pos.y,
+                  transform: "translate3d(-50%, -50%, 0) scale(0.65)",
+                  transformOrigin: "center center",
+                  background: "transparent",
+                  border: "none",
+                  boxShadow: "none",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  pointerEvents: "none",
+                  backfaceVisibility: "hidden",
+                  WebkitBackfaceVisibility: "hidden",
+                  WebkitFontSmoothing: "antialiased",
+                  zIndex: 1,
+                }}
               >
-                <div>
-                  <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-6">
-                    <h3 className="font-mono text-xs uppercase font-bold text-[#f4f4ed] tracking-wider">
-                      {category.name}
-                    </h3>
-                    <Badge variant={idx === 0 ? "orange" : idx === 1 ? "cyan" : "indigo"} size="xs">
-                      STACK
-                    </Badge>
+                {/* Floating Cosmic Drift Inner Container */}
+                <div className="floating-inner flex flex-col items-center justify-center gap-2 pointer-events-none">
+                  {/* Floating Icon Container with Ambient Halo */}
+                  <div
+                    className="relative flex items-center justify-center pointer-events-none"
+                    style={{
+                      width: "68px",
+                      height: "68px",
+                    }}
+                  >
+                    {/* Dedicated GPU Ambient Glow Aura (zero filter thrashing, pure clarity) */}
+                    <div
+                      className="icon-glow absolute -inset-4 rounded-full bg-gradient-to-tr from-[#ff7a00]/55 via-[#ff9e2c]/40 to-transparent blur-xl pointer-events-none"
+                      style={{ opacity: 0, transform: "scale(0.8)" }}
+                    />
+
+                    {/* Razor-Sharp Vector Icon */}
+                    <div
+                      className="relative z-10 flex items-center justify-center w-full h-full pointer-events-none"
+                      style={{
+                        filter: "drop-shadow(0 6px 14px rgba(0,0,0,0.7))",
+                      }}
+                    >
+                      <TechIcon name={skill.icon} className="w-14 h-14" />
+                    </div>
                   </div>
 
-                  <div className="space-y-5">
-                    {category.skills.map((skill, sIdx) => (
-                      <div key={sIdx} className="space-y-2">
-                        <div className="flex items-center justify-between text-xs sm:text-sm">
-                          <div className="flex items-center gap-2.5">
-                            <div className="w-6 h-6 rounded-[6.4px] bg-[#14161b] border border-white/10 flex items-center justify-center p-1 shrink-0">
-                              <TechIcon name={skill.icon} className="w-4 h-4" />
-                            </div>
-                            <span className="font-mono font-medium text-[#f4f4ed]">
-                              {skill.name}
-                            </span>
-                          </div>
-                          <span
-                            className="font-mono font-bold"
-                            style={{ color: category.accent }}
-                          >
-                            {skill.level}%
-                          </span>
-                        </div>
-
-                        {/* Progress meter */}
-                        <div className="h-1.5 w-full bg-[#14161b] rounded-full overflow-hidden border border-[#22252c]">
-                          <div
-                            className="h-full rounded-full transition-all duration-1000"
-                            style={{
-                              width: `${skill.level}%`,
-                              backgroundColor: category.accent,
-                              boxShadow: `0 0 8px ${category.accent}80`,
-                            }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  {/* Clean Crisp Text Label */}
+                  <span
+                    className="text-label"
+                    style={{
+                      fontFamily: "Mori, sans-serif",
+                      fontWeight: 600,
+                      fontSize: "1.1rem",
+                      color: "#fffce1",
+                      textAlign: "center",
+                      display: "inline-block",
+                      whiteSpace: "nowrap",
+                      pointerEvents: "none",
+                      letterSpacing: "-0.01em",
+                      textShadow: "0 2px 10px rgba(0,0,0,0.9)",
+                    }}
+                  >
+                    {skill.name}
+                  </span>
                 </div>
-
-                <div className="pt-4 border-t border-[#22252c] flex flex-wrap gap-1.5">
-                  {category.skills.map((skill, sIdx) => (
-                    <Badge key={sIdx} variant="dark" size="xs">
-                      {skill.name.split(" ")[0]}
-                    </Badge>
-                  ))}
-                </div>
-              </Card>
-            ))}
-          </div>
-        )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

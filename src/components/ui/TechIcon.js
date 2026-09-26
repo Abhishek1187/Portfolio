@@ -1,3 +1,5 @@
+import MongoAnimatedIcon from "./MongoAnimatedIcon";
+
 export default function TechIcon({ name, className = "w-6 h-6" }) {
   const iconKey = name.toLowerCase();
 
@@ -29,20 +31,23 @@ export default function TechIcon({ name, className = "w-6 h-6" }) {
 
   if (iconKey.includes("c++") || iconKey.includes("cpp")) {
     return (
-      <svg viewBox="0 0 24 24" className={className} fill="#00599C">
-        <path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm0 18a8 8 0 118-8 8 8 0 01-8 8zm-2-11H8v6h2v-2h2v2h2V9h-2v2H10zm9 2h-1v-1h-1v1h-1v1h1v1h1v-1h1zm4 0h-1v-1h-1v1h-1v1h1v1h1v-1h1z" />
-      </svg>
+      <img
+        src="/animations/c-plus-plus-svgrepo-com.svg"
+        alt="C++"
+        className={`${className} object-contain select-none pointer-events-none drop-shadow-[0_4px_12px_rgba(0,89,156,0.35)]`}
+        draggable={false}
+      />
     );
   }
 
   if (iconKey.includes("python")) {
     return (
-      <svg viewBox="0 0 24 24" className={className}>
-        <path d="M11.9 1C6.7 1 7 3.3 7 3.3v2.4h5v.7H4.3S1 6 1 11.2s2.9 4.9 2.9 4.9H6v-2.4s-.1-2.9 2.9-2.9h5v-.7h-5V5.7s0-2.4 4.3-2.4h3.6s2.4 0 2.4-2.3H11.9z" fill="#3776AB" />
-        <path d="M12.1 23c5.2 0 4.9-2.3 4.9-2.3v-2.4h-5v-.7h7.7s3.3.4 3.3-4.8-2.9-4.9-2.9-4.9H18v2.4s.1 2.9-2.9 2.9h-5v.7h5v4.4s0 2.4-4.3 2.4H7.2s-2.4 0-2.4 2.3h7.3z" fill="#FFD438" />
-        <circle cx="8.5" cy="3.5" r=".7" fill="#fff" />
-        <circle cx="15.5" cy="20.5" r=".7" fill="#fff" />
-      </svg>
+      <img
+        src="/animations/python-svgrepo-com.svg"
+        alt="Python"
+        className={`${className} object-contain select-none pointer-events-none drop-shadow-[0_4px_12px_rgba(56,126,184,0.35)]`}
+        draggable={false}
+      />
     );
   }
 
@@ -56,25 +61,23 @@ export default function TechIcon({ name, className = "w-6 h-6" }) {
 
   if (iconKey.includes("typescript") || iconKey.includes("ts")) {
     return (
-      <svg viewBox="0 0 128 128" className={className}>
-        <rect width="128" height="128" rx="16" fill="#3178C6" />
-        <path
-          d="M60.6 86.4c-1.4 6.8-6.1 11.2-13.6 11.2-8.8 0-14.7-6.2-14.7-16.1 0-10.4 6.1-16.6 15.3-16.6 7.2 0 11.8 3.8 13.5 10.3h-6.8c-1.1-3.6-3.4-5.5-6.8-5.5-5 0-8.2 3.8-8.2 11.8 0 7.8 3.2 11.3 7.8 11.3 3.6 0 6-2 7.1-5.4l6.5-1zm30.3-26.6h-24v5.4h9.1v32h6v-32h8.9v-5.4z"
-          fill="#FFFFFF"
-        />
-      </svg>
+      <img
+        src="/animations/typescript-svgrepo-com.svg"
+        alt="TypeScript"
+        className={`${className} object-contain select-none pointer-events-none drop-shadow-[0_4px_12px_rgba(0,122,204,0.35)]`}
+        draggable={false}
+      />
     );
   }
 
-  if (iconKey.includes("javascript") || iconKey.includes("js")) {
+  if (iconKey === "javascript" || iconKey === "js" || iconKey.includes("javascript")) {
     return (
-      <svg viewBox="0 0 128 128" className={className}>
-        <rect width="128" height="128" rx="16" fill="#F7DF1E" />
-        <path
-          d="M75.3 89.2c2.1 3.5 5 5.8 9.8 5.8 4.2 0 6.9-2.1 6.9-5 0-3.5-2.8-4.8-7.5-6.9l-2.6-1.1c-7.4-3.2-12.3-7.2-12.3-15.6 0-7.8 6-13.7 15.4-13.7 6.7 0 11.5 2.4 14.8 8.4l-6.2 4c-1.7-3-3.6-4.3-6.9-4.3-3.3 0-5.3 2-5.3 4.4 0 3 2.1 4.2 6.8 6.2l2.6 1.1c8.7 3.7 13.3 7.6 13.3 16.4 0 9.4-7.4 14.7-17.7 14.7-9.8 0-15.9-4.7-18.9-10.8l7.8-3.7zM38 90.1c1.8 3 4.1 5.2 8.3 5.2 4.1 0 6.7-2 6.7-6.9V53.7h8v34.8c0 9.1-5.3 14.1-14.7 14.1-8.1 0-13-4.2-15.3-9.5l7-3z"
-          fill="#000000"
-        />
-      </svg>
+      <img
+        src="/animations/javascript-svgrepo-com.svg"
+        alt="JavaScript"
+        className={`${className} object-contain select-none pointer-events-none drop-shadow-[0_4px_12px_rgba(247,223,30,0.35)]`}
+        draggable={false}
+      />
     );
   }
 
@@ -112,18 +115,17 @@ export default function TechIcon({ name, className = "w-6 h-6" }) {
 
   if (iconKey.includes("express")) {
     return (
-      <svg viewBox="0 0 24 24" className={className} fill="#f4f4ed">
-        <path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm1 14h-2v-4h2zm0-6h-2V8h2z" />
-      </svg>
+      <img
+        src="/animations/express-svgrepo-com.svg"
+        alt="Express.js"
+        className={`${className} object-contain select-none pointer-events-none drop-shadow-[0_4px_12px_rgba(255,255,255,0.3)]`}
+        draggable={false}
+      />
     );
   }
 
   if (iconKey.includes("mongo")) {
-    return (
-      <svg viewBox="0 0 24 24" className={className} fill="#47A248">
-        <path d="M12 0C11.6 0 10 .8 9.5 2.5c-.8 2.6-1.5 5.5-1.5 8.5 0 4.8 2.2 8.5 4 13 1.8-4.5 4-8.2 4-13 0-3-.7-5.9-1.5-8.5C14 .8 12.4 0 12 0zm0 2.1c.3.5.7 1.5.9 2.5.4 1.7.9 3.7.9 6.4 0 3.7-1.4 7.2-2.8 10.9-1.4-3.7-2.8-7.2-2.8-10.9 0-2.7.5-4.7.9-6.4.2-1 .6-2 .9-2.5z" />
-      </svg>
-    );
+    return <MongoAnimatedIcon className={className} />;
   }
 
   if (iconKey.includes("firebase")) {
@@ -152,11 +154,55 @@ export default function TechIcon({ name, className = "w-6 h-6" }) {
     );
   }
 
-  if (iconKey.includes("aws")) {
+  if (iconKey.includes("docker")) {
     return (
-      <svg viewBox="0 0 24 24" className={className} fill="#FF9900">
-        <path d="M12 2a10 10 0 1010 10A10 10 0 0012 2zm4.5 13.5c-2.5 1.5-6.5 1.5-9 0-.4-.2-.1-.7.3-.5 2.1 1.2 5.5 1.2 7.7 0 .5-.3.8.3.4.5zm.5-3.5l-1.2-4.5c-.1-.4-.5-.6-.9-.4l-4.5 1.8c-.4.2-.4.7 0 .8l4.5 1.8c.4.2.8 0 .9-.4z" />
+      <svg viewBox="0 0 24 24" className={className} fill="#2496ED">
+        <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.186.185.186m-2.93 2.714h2.12a.186.186 0 00.184-.185V9.006a.185.185 0 00-.185-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m0-2.714h2.12a.187.187 0 00.184-.186V6.29a.185.185 0 00-.185-.185h-2.119a.185.185 0 00-.185.185v1.887c0 .102.083.186.185.186m-2.928 2.714h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186h-2.12a.186.186 0 00-.184.185v1.888c0 .102.083.185.185.185m0-2.714h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185h-2.12a.186.186 0 00-.184.185v1.887c0 .102.083.186.185.186m-2.929 2.714h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.185-.186h-2.12a.186.186 0 00-.184.185v1.888c0 .102.082.185.184.185m-2.929 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.184.185v1.888c0 .102.082.185.184.185M23.766 8.44c-.65-.432-1.637-.608-2.614-.44-.264-1.417-1.367-2.38-2.766-2.521-.138-.014-.276-.014-.415 0a3.66 3.66 0 00-1.804.724l-.448.337-.114.542a4.42 4.42 0 01-.762 1.64c-.452.616-1.07 1.07-1.787 1.314H.624a.624.624 0 00-.624.625 9.014 9.014 0 001.488 4.978c2.322 3.67 6.438 5.485 11.233 5.03 5.495-.522 9.774-4.546 10.772-9.98.058-.314.55-.544.773-.804.288-.335.32-.82.128-1.225l-.628-.22" />
       </svg>
+    );
+  }
+
+  if (iconKey.includes("redis")) {
+    return (
+      <img
+        src="/animations/redis-logo-svgrepo-com.svg"
+        alt="Redis"
+        className={`${className} object-contain select-none pointer-events-none drop-shadow-[0_4px_12px_rgba(198,48,43,0.35)]`}
+        draggable={false}
+      />
+    );
+  }
+
+  if (iconKey.includes("redux")) {
+    return (
+      <img
+        src="/animations/redux-svgrepo-com.svg"
+        alt="Redux"
+        className={`${className} object-contain select-none pointer-events-none drop-shadow-[0_4px_12px_rgba(118,74,188,0.35)]`}
+        draggable={false}
+      />
+    );
+  }
+
+  if (iconKey.includes("aws") || iconKey.includes("amazon")) {
+    return (
+      <img
+        src="/animations/aws-svgrepo-com.svg"
+        alt="AWS"
+        className={`${className} object-contain select-none pointer-events-none drop-shadow-[0_4px_12px_rgba(245,133,53,0.35)]`}
+        draggable={false}
+      />
+    );
+  }
+
+  if (iconKey.includes("linux") || iconKey.includes("ubuntu")) {
+    return (
+      <img
+        src="/animations/linux-svgrepo-com.svg"
+        alt="Linux"
+        className={`${className} object-contain select-none pointer-events-none drop-shadow-[0_4px_12px_rgba(253,187,20,0.35)]`}
+        draggable={false}
+      />
     );
   }
 

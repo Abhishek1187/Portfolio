@@ -11,7 +11,7 @@ export default function CareerTimeline() {
       <div className="max-w-5xl mx-auto">
         <SectionHeader
           sector="05"
-          tag="05 // JOURNEY & FOUNDATION"
+          tag="JOURNEY & FOUNDATION"
           title="Experience & Milestones"
           subtitle="A progression of technical education, algorithmic rigor, and software craftsmanship."
           badgeVariant="indigo"

@@ -98,6 +98,60 @@
   }
 }
 
+/* ==========================================================================
+   Custom Cursors (Hardware Accelerated Native CSS)
+   ========================================================================== */
+@media (hover: hover) and (pointer: fine) {
+  html,
+  body {
+    cursor: url('/cursors/cursor-default.svg') 3 2, url('/cursors/cursor-default.png') 3 2, auto;
+  }
+
+  /* Interactive Elements - Hover, Active, Focus, and all descendants */
+  a,
+  a *,
+  button,
+  button *,
+  [role="button"],
+  [role="button"] *,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  summary,
+  select,
+  label[for],
+  .cursor-pointer,
+  .cursor-pointer *,
+  .mag-zone,
+  .mag-zone *,
+  .mag-btn,
+  .mag-btn * {
+    cursor: url('/cursors/cursor-pointer.svg') 14 2, url('/cursors/cursor-pointer.png') 14 2, pointer !important;
+  }
+
+  /* Text & Input Form Elements */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  textarea,
+  [contenteditable="true"] {
+    cursor: text !important;
+  }
+
+  /* Disabled State */
+  button:disabled,
+  button:disabled *,
+  input:disabled,
+  [aria-disabled="true"],
+  [aria-disabled="true"] * {
+    cursor: not-allowed !important;
+  }
+}
+
 /* Solar Obsidian Clean Ambient Utilities */
 .bg-obsidian-mesh {
   background-color: #05070f;
